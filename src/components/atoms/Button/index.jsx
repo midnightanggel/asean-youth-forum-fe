@@ -2,6 +2,15 @@ import clsx from "clsx";
 import { Loading } from "../Loading";
 // import { Link } from "react-router-dom";
 export const Button = ({ loading = false, ...props }) => {
+  const fontWeight = clsx(``, {
+    "font-thin ": props.weight === "thin",
+    "font-extralight ": props.weight === "extralight",
+    "font-light ": props.weight === "light",
+    "font-normal ": props.weight === "normal",
+    "font-medium ": props.weight === "medium",
+    "font-bold ": props.weight === "bold",
+  });
+
   const fontSize = clsx(``, {
     "text-sm ": props.font === "sm",
     "text-base ": props.font === "base",
@@ -32,7 +41,7 @@ export const Button = ({ loading = false, ...props }) => {
         props.variant === "primary-outline",
     }
   );
-  const className = [buttonVariant, buttonWidth, fontSize].join("");
+  const className = [buttonVariant, buttonWidth, fontSize, fontWeight].join("");
   return (
     <button {...props} className={className}>
       {loading ? <Loading /> : props.children}
