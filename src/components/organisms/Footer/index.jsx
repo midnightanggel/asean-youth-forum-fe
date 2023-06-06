@@ -33,10 +33,10 @@ export const Footer = () => {
         <div className="w-auto flex flex-col gap-2 ">
           <h1 className="font-semibold">Supported by</h1>
           <figure className="w-[120px]">
-            <img src="/asyf-logo.png" alt="" />
+            <img src="/logo/asyf-logo.png" alt="" />
           </figure>
           <figure className="w-[120px]">
-            <img src="/skilvul-logo.png" alt="" />
+            <img src="/logo/skilvul-logo.png" alt="" />
           </figure>
         </div>
       </section>
