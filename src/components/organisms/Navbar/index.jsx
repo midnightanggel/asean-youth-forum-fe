@@ -16,10 +16,22 @@ export const Navbar = () => {
           <h1 className="cursor-pointer">Forums</h1>
         </div>
         <div className="flex flex-row gap-5">
-          <Button padding="1" width="100" font="base" variant="primary">
+          <Button
+            weight="normal"
+            padding="1"
+            width="100"
+            font="base"
+            variant="primary"
+          >
             Register
           </Button>
-          <Button padding="1" width="100" font="base" variant="primary-outline">
+          <Button
+            weight="normal"
+            padding="1"
+            width="100"
+            font="base"
+            variant="primary-outline"
+          >
             Login
           </Button>
         </div>
