@@ -1,10 +1,11 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { Button, Navbar, Footer } from "@/components";
+import { MainTemplate } from "@/components";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Navbar />
-    <Footer />
+    <MainTemplate className="items-center justify-center bg-[#09644E] text-white">
+      <h1>test</h1>
+    </MainTemplate>
   </StrictMode>
 );
