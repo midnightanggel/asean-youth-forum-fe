@@ -20,6 +20,7 @@ export const Button = ({ loading = false, ...props }) => {
   const buttonWidth = clsx(``, {
     "w-full ": props.width === "full",
     "w-[100px] ": props.width === "100",
+    "w-[150px] ": props.width === "150",
     "w-[200px] ": props.width === "200",
     "w-[300px] ": props.width === "300",
     "p-1 ": props.padding === "1",
@@ -34,7 +35,7 @@ export const Button = ({ loading = false, ...props }) => {
   });
 
   const buttonVariant = clsx(
-    "rounded-lg font-medium disabled:bg-gray-400 disabled:text-gray-50 disabled:border-gray-400 appearance-none hover:opacity-75 ",
+    "rounded-lg font-medium disabled:bg-gray-400 disabled:text-gray-50 disabled:border-gray-400 appearance-none hover:opacity-75 flex items-center justify-center gap-2 ",
     {
       "bg-[#1DBC40] text-white ": props.variant === "primary",
       "text-[#1DBC40] border-2 border-[#1DBC40] ":

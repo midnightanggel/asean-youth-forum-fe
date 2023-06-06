@@ -1,9 +1,9 @@
-import { MainTemplate, Button } from "@/components";
+import { Main, Content, Button, CardArticle } from "@/components";
 
 export const Home = () => {
   return (
-    <MainTemplate className="items-center justify-center  flex-col ">
-      <section className="flex flex-row w-full min-h-screen bg-[#09644E] text-white justify-between items-center px-[15vh] mt-[10vh] ">
+    <Main className="items-center justify-center flex-col ">
+      <Content className="flex-row bg-[#09644E] text-white justify-between items-center  ">
         <div className="w-2/5 flex flex-col gap-5">
           <h1 className="font-bold text-4xl">
             Uniting ASEAN's Youth for a Better Tomorrow
@@ -35,7 +35,31 @@ export const Home = () => {
             />
           </figcaption>
         </div>
-      </section>
-    </MainTemplate>
+      </Content>
+      <Content className="flex-col  gap-5 ">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col ">
+            <h1 className="font-bold text-4xl">Article</h1>
+            <p className="font-medium text-lg  text-[#747474]">Latest</p>
+          </div>
+          <div className="flex flex-wrap gap-5">
+            <CardArticle />
+            <CardArticle />
+            <CardArticle />
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col ">
+            <h1 className="font-bold text-4xl">Forums</h1>
+            <p className="font-medium text-lg  text-[#747474]">Latest</p>
+          </div>
+          <div className="flex flex-wrap gap-5">
+            <CardArticle />
+            <CardArticle />
+            <CardArticle />
+          </div>
+        </div>
+      </Content>
+    </Main>
   );
 };

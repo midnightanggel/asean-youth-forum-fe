@@ -2,8 +2,8 @@ import { Button } from "@/components";
 
 export const Navbar = () => {
   return (
-    <header className="flex flex-row bg-[#F0F2F5] gap-5 w-full h-[15vh] text-base px-[15vh] items-center drop-shadow-md fixed ">
-      <figure className="w-[100px]">
+    <header className="flex flex-row bg-[#F0F2F5] gap-5 w-full h-[13vh] text-base px-[15vh] items-center drop-shadow-md fixed ">
+      <figure className="w-[90px]">
         <img src="/logo/asyf-logo.png" alt="" />
       </figure>
       <nav className="flex flex-row items-center justify-between w-full ">
