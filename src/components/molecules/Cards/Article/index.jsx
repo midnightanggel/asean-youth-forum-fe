@@ -3,7 +3,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Button } from "@/components";
 export const Article = (props) => {
-  const { title, desc, date, author, id } = props;
+  const { title, desc, date, author, id, img } = props;
   return (
     <div className="bg-white w-[370px] h-[400px] shadow-lg flex flex-col rounded-lg">
       <figure className="w-full ">
@@ -13,7 +13,10 @@ export const Article = (props) => {
           alt=""
         />
       </figure>
-      <div className="px-5 py-3 flex flex-col gap-3 ">
+      <div className="px-5 py-3 flex flex-col gap-2 ">
+        <h1 className="font-semibold  ">
+          John Lewis, civil rights giant, crosses infamous Selma bridge one
+        </h1>
         <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
           <MdOutlineDateRange />
           <h1>24 Oct,2021</h1>
@@ -21,10 +24,7 @@ export const Article = (props) => {
           <BiUserCircle />
           <h1>Fahmi Sugiarto</h1>
         </div>
-        <h1 className="font-semibold  ">
-          John Lewis, civil rights giant, crosses infamous Selma bridge one
-        </h1>
-        <p className="font-normal text-sm  text-[#747474] text-justify pb-1">
+        <p className="font-normal text-sm  text-[#1f1e1e] text-justify pb-1">
           Solemn crowds watch as Lewis, who died earlier this month at the age
           of 80, is borne by caisson over Edmund Pettus Bridge
         </p>

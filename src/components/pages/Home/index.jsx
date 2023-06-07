@@ -1,4 +1,4 @@
-import { Main, Content, Button, Article } from "@/components";
+import { Main, Content, Button, Article, Forum } from "@/components";
 
 export const Home = () => {
   return (
@@ -54,9 +54,8 @@ export const Home = () => {
             <p className="font-medium text-lg  text-[#747474]">Latest</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            <Article />
-            <Article />
-            <Article />
+            <Forum />
+            <Forum />
           </div>
         </div>
       </Content>

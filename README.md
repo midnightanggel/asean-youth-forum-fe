@@ -1,6 +1,7 @@
 # Asean Youth Forum (AYF) Front End
 
 Dibuat dengan :
+
 - Vite
 - React
 - Redux Tool Kit
@@ -21,11 +22,13 @@ Dibuat dengan :
   ```bash
   > git checkout -b improvement/apa-yang-di-improve
   ```
+
 - If you do bugfix
 
   ```bash
   > git checkout -b bugfix/apa-yang-di-fix
   ```
+
 - If you do create a new feature
 
   ```bash
@@ -39,11 +42,13 @@ Dibuat dengan :
   ```bash
   > git commit -m "improvement: apa yang di improve"
   ```
+
 - If you do bugfix
 
   ```bash
   > git commit -m "bugfix: apa yang di fix"
   ```
+
 - If you do create a new feature
 
   ```bash
@@ -53,7 +58,7 @@ Dibuat dengan :
 ## Conflict Resolve Guide
 
     1. Stash dulu kerjaan kamu supaya gak ilang
-        
+
       > git stash
 
     2. Setelah itu kamu perlu pull perubahan dari branch development
@@ -100,12 +105,13 @@ Visual Studio Code
 
 - Clone Project ini ( Direkomendasikan menggunakan SSH )
 
-   ```bash
+  ```bash
   > git clone git@github.com:midnightanggel/ayo-fe-38.git
   ```
+
 - Install dependencies
 
-   ```bash
+  ```bash
   > yarn or npm install
   ```
 
@@ -113,12 +119,12 @@ Visual Studio Code
 
 ## Run Development
 
-   ```bash
-   > yarn dev or npm run dev
-  ```
+```bash
+> yarn dev or npm run dev
+```
 
 ## Demo App
 
-- [Production Build]( )
+- [Development Build](https://asean-youth-forum-fe.vercel.app/)
 
-- [Development Build]( )
+- [Production Build](https://asean-youth-forum-fe.netlify.app/)
