@@ -9,3 +9,9 @@
     font-family: "Poppins", sans-serif;
   }
 }
+.active {
+  color: #1dbc40;
+  text-decoration-line: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 4px;
+}

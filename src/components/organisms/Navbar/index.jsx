@@ -1,4 +1,5 @@
 import { Button } from "@/components";
+import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -8,12 +9,18 @@ export const Navbar = () => {
       </figure>
       <nav className="flex flex-row items-center justify-between w-full ">
         <div className="flex flex-row gap-5 font-semibold ">
-          <h1 className="cursor-pointer text-[#1DBC40] underline underline-offset-8 decoration-4  ">
+          <NavLink exact to="/" className="cursor-pointer ">
             Home
-          </h1>
-          <h1 className="cursor-pointer">About</h1>
-          <h1 className="cursor-pointer">Articles</h1>
-          <h1 className="cursor-pointer">Forums</h1>
+          </NavLink>
+          <NavLink to="/about" className="cursor-pointer ">
+            About
+          </NavLink>
+          <NavLink to="/articles" className="cursor-pointer">
+            Articles
+          </NavLink>
+          <NavLink to="/forums" className="cursor-pointer">
+            Forums
+          </NavLink>
         </div>
         <div className="flex flex-row gap-5">
           <Button
