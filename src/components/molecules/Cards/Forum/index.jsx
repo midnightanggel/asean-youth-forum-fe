@@ -8,15 +8,15 @@ export const Forum = (props) => {
   const { title, desc, date, author, id, img, chats } = props;
 
   return (
-    <div className="bg-white w-[565px] h-[226px] shadow-lg flex flex-row rounded-lg">
-      <figure className="w-2/5">
+    <div className="bg-white w-[565px] h-[227px] shadow-lg flex flex-row rounded-lg">
+      <figure className="w-2/5 h-full">
         <img
           className="aspect-square object-cover rounded-l-lg "
           src="/img/home.png"
           alt=""
         />
       </figure>
-      <div className="p-5 flex flex-col gap-2 w-3/5 h-full ">
+      <div className="p-4 flex flex-col gap-2 w-3/5 h-full ">
         <h1 className="font-semibold  ">
           John Lewis, civil rights giant, crosses infamous Selma bridge one
         </h1>
