@@ -22,6 +22,7 @@ export const Home = () => {
             width="200"
             font="base"
             variant="primary"
+            to="/login"
           >
             Let's Contribute
           </Button>

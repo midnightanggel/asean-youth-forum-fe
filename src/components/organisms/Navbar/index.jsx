@@ -29,6 +29,7 @@ export const Navbar = () => {
             width="100"
             font="base"
             variant="primary"
+            to="/register"
           >
             Register
           </Button>
@@ -38,6 +39,7 @@ export const Navbar = () => {
             width="100"
             font="base"
             variant="primary-outline"
+            to="/login"
           >
             Login
           </Button>
