@@ -20,19 +20,19 @@ Dibuat dengan :
 - If you do improve
 
   ```bash
-  > git checkout -b improvement/apa-yang-di-improve
+   git checkout -b improvement/apa-yang-di-improve
   ```
 
 - If you do bugfix
 
   ```bash
-  > git checkout -b bugfix/apa-yang-di-fix
+   git checkout -b bugfix/apa-yang-di-fix
   ```
 
 - If you do create a new feature
 
   ```bash
-  > git checkout -b feature/fitur-apa-yang-di-buat
+   git checkout -b feature/fitur-apa-yang-di-buat
   ```
 
 ## Commit Message Guide
@@ -40,34 +40,34 @@ Dibuat dengan :
 - If you do improve
 
   ```bash
-  > git commit -m "improvement: apa yang di improve"
+   git commit -m "improvement: apa yang di improve"
   ```
 
 - If you do bugfix
 
   ```bash
-  > git commit -m "bugfix: apa yang di fix"
+   git commit -m "bugfix: apa yang di fix"
   ```
 
 - If you do create a new feature
 
   ```bash
-  > git commit -m "feature: fitur apa yang di buat"
+   git commit -m "feature: fitur apa yang di buat"
   ```
 
 ## Conflict Resolve Guide
 
     1. Stash dulu kerjaan kamu supaya gak ilang
 
-      > git stash
+       git stash
 
     2. Setelah itu kamu perlu pull perubahan dari branch development
 
-     > git pull origin development
+      git pull origin development
 
     3. Setelah kamu berhasil melakukan pembaruan dari branch development selanjutnya kamu perlu mengembalikan pekerjaan mu sebelum nya yang ter stash
 
-      > git stash pop
+       git stash pop
 
     4. Lanjutkan Pekerjaan dengan Semestinya
 
@@ -77,19 +77,19 @@ Dibuat dengan :
 
     1. Pindah dulu ke Branch development
 
-     > git checkout development
+      git checkout development
 
     2. Kemudian pull perubahan terbaru dari branch development
 
-     > git pull
+      git pull
 
     3. Kemudian Pindah lagi ke branch dirimu
 
-     > git checkout <branch kamu>
+      git checkout <branch kamu
 
     4. Selanjutnya kita perlu merge perubahan terbaru dari development
 
-     > git merge development
+      git merge development
 
 ## Recomendation Code Editor
 
@@ -106,13 +106,13 @@ Visual Studio Code
 - Clone Project ini ( Direkomendasikan menggunakan SSH )
 
   ```bash
-  > git clone git@github.com:midnightanggel/ayo-fe-38.git
+   git clone git@github.com:midnightanggel/ayo-fe-38.git
   ```
 
 - Install dependencies
 
   ```bash
-  > yarn or npm install
+   yarn or npm install
   ```
 
 - Lalu mulai pekerjaanmu sebagai mestinya
@@ -120,7 +120,7 @@ Visual Studio Code
 ## Run Development
 
 ```bash
-> yarn dev or npm run dev
+ yarn dev or npm run dev
 ```
 
 ## Demo App
