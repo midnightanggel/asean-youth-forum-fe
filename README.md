@@ -95,7 +95,6 @@ Visual Studio Code
 - TailwindCSS Intelesense
 - Prettier
 - Error Lens
-- Live Server
 
 ## Initial Setup
 
