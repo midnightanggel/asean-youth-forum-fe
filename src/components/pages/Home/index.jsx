@@ -1,4 +1,4 @@
-import { Main, Content, Button, CardArticle } from "@/components";
+import { Main, Content, Button, Article } from "@/components";
 
 export const Home = () => {
   return (
@@ -36,27 +36,27 @@ export const Home = () => {
           </figcaption>
         </div>
       </Content>
-      <Content className="flex-col  gap-5 ">
+      <Content className="flex-col  gap-8 ">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
-            <h1 className="font-bold text-4xl">Article</h1>
+            <h1 className="font-bold text-3xl">Articles</h1>
             <p className="font-medium text-lg  text-[#747474]">Latest</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            <CardArticle />
-            <CardArticle />
-            <CardArticle />
+            <Article />
+            <Article />
+            <Article />
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
-            <h1 className="font-bold text-4xl">Forums</h1>
+            <h1 className="font-bold text-3xl">Forums</h1>
             <p className="font-medium text-lg  text-[#747474]">Latest</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            <CardArticle />
-            <CardArticle />
-            <CardArticle />
+            <Article />
+            <Article />
+            <Article />
           </div>
         </div>
       </Content>
