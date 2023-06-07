@@ -114,8 +114,8 @@ Visual Studio Code
 
 ## Run Development
 
-```bash
-  > yarn dev or npm run
+   ```bash
+   > yarn dev or npm run dev
   ```
 
 ## Demo App
