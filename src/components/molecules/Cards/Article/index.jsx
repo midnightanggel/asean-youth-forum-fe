@@ -2,7 +2,8 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Button } from "@/components";
-export const CardArticle = () => {
+export const Article = (props) => {
+  const { title, desc, date, author, id } = props;
   return (
     <div className="bg-white w-[370px] h-[400px] shadow-lg flex flex-col rounded-lg">
       <figure className="w-full ">
