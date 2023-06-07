@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Loading } from "../Loading";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 export const Button = ({ loading = false, ...props }) => {
   const fontWeight = clsx(``, {
     "font-thin ": props.weight === "thin",
@@ -43,7 +43,13 @@ export const Button = ({ loading = false, ...props }) => {
     }
   );
   const className = [buttonVariant, buttonWidth, fontSize, fontWeight].join("");
-  return (
+  return props.to ? (
+    <Link to={props.to}>
+      <button {...props} className={className}>
+        {loading ? <Loading /> : props.children}
+      </button>
+    </Link>
+  ) : (
     <button {...props} className={className}>
       {loading ? <Loading /> : props.children}
     </button>
