@@ -2,8 +2,8 @@ import { Main, Content, Button, Article, Forum } from "@/components";
 
 export const Home = () => {
   return (
-    <Main className="items-center justify-center flex-col ">
-      <Content className="flex-row bg-[#09644E] text-white justify-between items-center  ">
+    <Main>
+      <Content className="flex-row bg-[#09644E] text-white justify-between items-center py-[8vh] ">
         <div className="w-2/5 flex flex-col gap-5">
           <h1 className="font-bold text-4xl">
             Uniting ASEAN's Youth for a Better Tomorrow
