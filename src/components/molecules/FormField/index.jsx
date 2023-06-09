@@ -12,7 +12,7 @@ export const FormField = (props) => {
     }
   );
   const inputPadding = clsx(
-    `text-[#D9D9D9] flex items-center text-2xl font-normal`,
+    `text-[#A2A2A2] flex items-center text-2xl font-bold cursor-pointer`,
     {
       "p-1 ": padding === "1",
       "p-2 ": padding === "2",
