@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 export const Carousel = (props) => {
@@ -30,6 +30,12 @@ export const Carousel = (props) => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <Fragment>
       <div className="relative w-full h-[450px] group">
