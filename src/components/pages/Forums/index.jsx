@@ -4,7 +4,7 @@ export const Forums = () => {
   return (
     <Main>
       <Content className="flex-col gap-8 pt-[10vh]">
-        <div className="flex flex-row w-full justify-between">
+        <div className="flex flex-row w-full justify-between items-center">
           <h1 className="font-bold text-3xl">Forums</h1>
           <div className="flex flex-row gap-2">
             <FormField

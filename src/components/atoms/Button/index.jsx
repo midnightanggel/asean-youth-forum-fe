@@ -38,11 +38,17 @@ export const Button = ({ loading = false, ...props }) => {
     "rounded-lg font-medium disabled:bg-gray-400 disabled:text-gray-50 disabled:border-gray-400 appearance-none hover:opacity-75 flex items-center justify-center gap-2 ",
     {
       "bg-[#1DBC40] text-white ": props.variant === "primary",
-      "text-[#1DBC40] border-2 border-[#1DBC40] ":
+      "text-[#1DBC40] border-2 border-[#1DBC40]   ":
         props.variant === "primary-outline",
     }
   );
-  const className = [buttonVariant, buttonWidth, fontSize, fontWeight].join("");
+  const className = [
+    buttonVariant,
+    buttonWidth,
+    fontSize,
+    fontWeight,
+    padding,
+  ].join("");
   return props.to ? (
     <Link to={props.to}>
       <button {...props} className={className}>
