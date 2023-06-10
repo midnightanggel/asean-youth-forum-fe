@@ -1,13 +1,13 @@
-import { Auth, FormField, Button } from "@/components";
+import { AuthLayout, FormField, Button } from "@/components";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   return (
-    <Auth direction="row">
+    <AuthLayout direction="row">
       <section className="h-full w-3/5 flex items-center justify-center  ">
-        <form className="h-full w-[350px]  items-center justify-center flex flex-col gap-8">
+        <Form className="gap-8">
           <div className="flex flex-col gap-1 items-center">
             <h1 className="font-bold text-3xl">Welcome Back</h1>
             <h1 className="font-normal text-base ">Login into your account</h1>
@@ -47,7 +47,7 @@ export const Login = () => {
               Register
             </Link>
           </h1>
-        </form>
+        </Form>
       </section>
       <section className="h-full w-2/5">
         <img
@@ -56,6 +56,6 @@ export const Login = () => {
           alt=""
         />
       </section>
-    </Auth>
+    </AuthLayout>
   );
 };

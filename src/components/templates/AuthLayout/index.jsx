@@ -1,5 +1,5 @@
 import clsx from "clsx";
-export const Auth = (props) => {
+export const AuthLayout = (props) => {
   const { children, direction } = props;
 
   const templateDirection = clsx(`w-full h-screen flex bg-[#F0F2F5] `, {

@@ -1,5 +1,5 @@
 import { Navbar, Footer } from "@/components";
-export const Main = (props) => {
+export const MainLayout = (props) => {
   const { children } = props;
   return (
     <main className="flex flex-col w-full h-full bg-[#F0F2F5] ">

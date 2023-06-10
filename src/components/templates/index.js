@@ -1,3 +1,3 @@
-export * from "./Main";
-export * from "./Content";
-export * from "./Auth";
+export * from "./MainLayout";
+export * from "./ContentLayout";
+export * from "./AuthLayout";
