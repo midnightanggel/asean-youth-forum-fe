@@ -1,10 +1,10 @@
-import { Main, Content, FormField, Article } from "@/components";
+import { MainLayout, ContentLayout, FormField, Article } from "@/components";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { Carousel } from "@/components";
 export const Articles = () => {
   return (
-    <Main>
-      <Content className="flex-col gap-5 pt-[10vh]">
+    <MainLayout>
+      <ContentLayout className="flex-col gap-5 pt-[10vh]">
         <div className="flex flex-row w-full justify-between items-center">
           <h1 className="font-bold text-3xl">Articles</h1>
           <FormField padding="3" placeholder="Search" width="auto" type="text">
@@ -24,7 +24,7 @@ export const Articles = () => {
           <Article />
           <Article />
         </div>
-      </Content>
-    </Main>
+      </ContentLayout>
+    </MainLayout>
   );
 };

@@ -1,4 +1,4 @@
-export const Content = (props) => {
+export const ContentLayout = (props) => {
   const { children, className } = props;
   return (
     <section
