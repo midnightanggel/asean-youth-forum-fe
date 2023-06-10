@@ -41,9 +41,9 @@ export const Carousel = (props) => {
       <div className="relative w-full h-[450px] group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-          className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
+          className="w-full h-full rounded-xl bg-center bg-cover duration-500 ease-in-out"
         ></div>
-        <div className="flex items-center justify-center h-[150px] absolute bottom-0 left-0 p-4 text-white bg-gradient-to-t from-black to-transparent rounded-b-lg w-full">
+        <div className="flex items-center justify-center h-[150px] absolute bottom-0 left-0 p-4 text-white bg-gradient-to-t from-black to-transparent rounded-b-xl w-full">
           <p className="text-center">
             Solemn crowds watch as Lewis, who died earlier this month at the age
             of 80, is borne by caisson over Edmund Pettus Bridge

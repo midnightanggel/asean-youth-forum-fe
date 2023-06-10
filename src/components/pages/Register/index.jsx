@@ -1,13 +1,14 @@
-import { Auth, FormField, Button } from "@/components";
+import { AuthLayout, FormField, Button, Form } from "@/components";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export const Register = () => {
   const [showPassword, setShowPassword] = useState("password");
+  const [showConfirmPassword, setShowConfirmPassword] = useState("password");
   return (
-    <Auth direction="reverse">
+    <AuthLayout direction="reverse">
       <section className="h-full w-3/5 flex items-center justify-center ">
-        <form className="h-full w-[350px] flex items-center justify-center flex-col gap-7">
+        <Form className="gap-7">
           <div className="flex flex-col gap-1 items-center">
             <h1 className="font-bold text-3xl">Get Started With AYF</h1>
             <h1 className="font-normal text-base ">Let's join us</h1>
@@ -53,12 +54,16 @@ export const Register = () => {
               padding="2"
               placeholder="Confirm Password"
               width="full"
-              type={showPassword}
+              type={showConfirmPassword}
             >
-              {showPassword === "password" ? (
-                <BsFillEyeSlashFill onClick={() => setShowPassword("text")} />
+              {showConfirmPassword === "password" ? (
+                <BsFillEyeSlashFill
+                  onClick={() => setShowConfirmPassword("text")}
+                />
               ) : (
-                <BsFillEyeFill onClick={() => setShowPassword("password")} />
+                <BsFillEyeFill
+                  onClick={() => setShowConfirmPassword("password")}
+                />
               )}
             </FormField>
           </div>
@@ -77,7 +82,7 @@ export const Register = () => {
               Login
             </Link>
           </h1>
-        </form>
+        </Form>
       </section>
       <section className="h-full w-2/5">
         <img
@@ -86,6 +91,6 @@ export const Register = () => {
           alt=""
         />
       </section>
-    </Auth>
+    </AuthLayout>
   );
 };

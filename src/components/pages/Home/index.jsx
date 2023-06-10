@@ -1,9 +1,15 @@
-import { Main, Content, Button, Article, Forum } from "@/components";
+import {
+  MainLayout,
+  ContentLayout,
+  Button,
+  Article,
+  Forum,
+} from "@/components";
 
 export const Home = () => {
   return (
-    <Main>
-      <Content className="flex-row bg-[#09644E] text-white justify-between items-center py-[8vh] ">
+    <MainLayout>
+      <ContentLayout className="flex-row bg-[#09644E] text-white justify-between items-center py-[8vh] ">
         <div className="w-2/5 flex flex-col gap-5">
           <h1 className="font-bold text-4xl">
             Uniting ASEAN's Youth for a Better Tomorrow
@@ -36,8 +42,8 @@ export const Home = () => {
             />
           </figcaption>
         </div>
-      </Content>
-      <Content className="flex-col  gap-8 ">
+      </ContentLayout>
+      <ContentLayout className="flex-col  gap-8 ">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
             <h1 className="font-bold text-3xl">Articles</h1>
@@ -59,7 +65,7 @@ export const Home = () => {
             <Forum />
           </div>
         </div>
-      </Content>
-    </Main>
+      </ContentLayout>
+    </MainLayout>
   );
 };
