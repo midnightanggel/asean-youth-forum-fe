@@ -1,4 +1,5 @@
 import { Button } from "@/components";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
@@ -6,6 +7,8 @@ export const Navbar = () => {
     isActive
       ? "text-[#1dbc40] underline underline-offset-8 decoration-4"
       : "text-black";
+
+  useEffect(() => {});
   return (
     <header className="z-10 flex flex-row bg-[#F0F2F5] gap-5 w-full h-[13vh] text-base px-[15vh] items-center drop-shadow-md fixed ">
       <figure className="w-[90px]">

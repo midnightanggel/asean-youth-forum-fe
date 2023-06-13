@@ -18,8 +18,8 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await post("/auth/login", users);
-    const { message, token, user } = res;
-    message === "success" &&
+    const { status, token, user } = res;
+    status === "success" &&
       setUsers({
         email: "",
         password: "",

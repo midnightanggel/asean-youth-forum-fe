@@ -3,30 +3,24 @@ import { BiUserCircle } from "react-icons/bi";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Button } from "@/components";
 export const Article = (props) => {
-  const { title, desc, date, author, id, img } = props;
+  const { title, content, date, id, image } = props;
   return (
-    <div className="bg-white w-[370px] h-[400px] shadow-lg flex flex-col rounded-lg">
+    <div className="bg-white w-[370px] h-[380px] shadow-lg flex flex-col rounded-lg">
       <figure className="w-full ">
         <img
           className="aspect-[20/8] object-cover rounded-t-lg "
-          src="/img/home.png"
+          src={image}
           alt=""
         />
       </figure>
-      <div className="px-5 py-3 flex flex-col gap-2 ">
-        <h1 className="font-semibold  ">
-          John Lewis, civil rights giant, crosses infamous Selma bridge one
-        </h1>
+      <div className="px-5 py-3 flex flex-col gap-2  w-full h-full ">
+        <h1 className="font-semibold line-clamp-2  h-12">{title}</h1>
         <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
           <MdOutlineDateRange />
-          <h1>24 Oct,2021</h1>
-          <h1> | </h1>
-          <BiUserCircle />
-          <h1>Fahmi Sugiarto</h1>
+          <h1>{date}</h1>
         </div>
-        <p className="font-normal text-sm  text-[#1f1e1e] text-justify pb-1">
-          Solemn crowds watch as Lewis, who died earlier this month at the age
-          of 80, is borne by caisson over Edmund Pettus Bridge
+        <p className="font-normal text-sm  text-[#1f1e1e] text-justify pb-1 line-clamp-3">
+          {content}
         </p>
         <Button
           weight="normal"
@@ -34,7 +28,7 @@ export const Article = (props) => {
           width="150"
           font="sm"
           variant="primary"
-          to="/articles/1"
+          to={`/articles/${id}`}
         >
           Read More
           <TbCircleArrowRightFilled className="text-[20px]" />
