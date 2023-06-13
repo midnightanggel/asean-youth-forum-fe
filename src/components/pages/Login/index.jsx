@@ -19,7 +19,6 @@ export const Login = () => {
     e.preventDefault();
     const res = await post("/auth/login", users);
     const { message, token, user } = res;
-    console.log(message);
     message === "success" &&
       setUsers({
         email: "",
