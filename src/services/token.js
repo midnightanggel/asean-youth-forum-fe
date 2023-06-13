@@ -6,7 +6,7 @@ export const getToken = () => {
 };
 
 export const getUserData = () => {
-  return localStorage.getItem(USER);
+  return JSON.parse(localStorage.getItem(USER));
 };
 
 export const saveToken = (accessToken) => {

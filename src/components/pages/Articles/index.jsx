@@ -26,7 +26,7 @@ export const Articles = () => {
         </div>
         {articles.length != 0 && <Carousel data={articles.slice(0, 5)} />}
         <div className="flex flex-wrap w-full gap-5">
-          {articles &&
+          {articles.length != 0 &&
             articles.map((el, i) => (
               <Article
                 key={i}
