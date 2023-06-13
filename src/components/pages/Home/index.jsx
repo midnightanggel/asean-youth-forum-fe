@@ -9,7 +9,10 @@ import {
 export const Home = () => {
   return (
     <MainLayout>
-      <ContentLayout className="flex-row bg-[#09644E] text-white justify-between items-center py-[8vh] ">
+      <ContentLayout
+        padding={true}
+        className="flex-row bg-[#09644E] text-white justify-between items-center  "
+      >
         <div className="w-2/5 flex flex-col gap-5">
           <h1 className="font-bold text-4xl">
             Uniting ASEAN's Youth for a Better Tomorrow
@@ -43,7 +46,7 @@ export const Home = () => {
           </figcaption>
         </div>
       </ContentLayout>
-      <ContentLayout className="flex-col  gap-8 ">
+      <ContentLayout padding={true} className="flex-col  gap-8 ">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
             <h1 className="font-bold text-3xl">Articles</h1>

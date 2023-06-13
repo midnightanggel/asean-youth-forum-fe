@@ -40,6 +40,7 @@ export const Forum = (props) => {
           width="100"
           font="sm"
           variant="primary"
+          to="/forums/1"
         >
           Join
           <TbCircleArrowRightFilled className="text-[20px]" />

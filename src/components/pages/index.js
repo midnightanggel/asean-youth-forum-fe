@@ -4,3 +4,4 @@ export * from "./Articles";
 export * from "./Forums";
 export * from "./Login";
 export * from "./Register";
+export * from "./ForumDetail";

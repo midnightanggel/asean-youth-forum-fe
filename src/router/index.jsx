@@ -1,5 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, About, Articles, Forums, Login, Register } from "@/components";
+import {
+  Home,
+  About,
+  Articles,
+  Forums,
+  ForumDetail,
+  Login,
+  Register,
+} from "@/components";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,7 +19,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/forums",
-    element: <Forums />,
+    children: [
+      {
+        index: true,
+        element: <Forums />,
+      },
+      {
+        path: ":id",
+        element: <ForumDetail />,
+      },
+    ],
   },
   {
     path: "/articles",
