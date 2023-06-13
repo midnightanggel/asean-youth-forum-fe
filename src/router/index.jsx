@@ -7,6 +7,7 @@ import {
   ForumDetail,
   Login,
   Register,
+  ArticleDetail,
 } from "@/components";
 const router = createBrowserRouter([
   {
@@ -32,7 +33,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/articles",
-    element: <Articles />,
+    children: [
+      { index: true, element: <Articles /> },
+      {
+        path: ":id",
+        element: <ArticleDetail />,
+      },
+    ],
   },
   {
     path: "/login",

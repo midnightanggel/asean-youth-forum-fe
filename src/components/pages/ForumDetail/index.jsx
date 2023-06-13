@@ -4,8 +4,42 @@ import { BiUserCircle } from "react-icons/bi";
 import { BsChatLeftText } from "react-icons/bs";
 import { MdSend } from "react-icons/md";
 import { useState } from "react";
+import { io } from "socket.io-client";
+import { useEffect } from "react";
+
 export const ForumDetail = () => {
   const [route, setRoute] = useState("about");
+  const [socket, setSocket] = useState(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:3000");
+    newSocket.on("connection", (socket) => {
+      console.log(socket);
+    });
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("message", (data) => {
+        console.log("Received message:", data);
+      });
+    }
+  }, [socket]);
+
+  const sendMessage = () => {
+    console.log(message);
+
+    if (socket) {
+      socket.emit("message", message);
+      setMessage("");
+    }
+  };
   return (
     <MainLayout>
       <ContentLayout className="flex-col  pt-[5vh] ">
@@ -108,8 +142,10 @@ export const ForumDetail = () => {
                 placeholder="Write message here..."
                 width=""
                 type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               >
-                <MdSend className="text-[#1dbc40]" />
+                <MdSend onClick={sendMessage} className="text-[#1dbc40]" />
               </FormField>
             </div>
           )}
