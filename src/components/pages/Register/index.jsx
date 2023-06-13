@@ -21,9 +21,16 @@ export const Register = () => {
   };
   const handRegister = async (e) => {
     e.preventDefault();
-    const res = await post("/auth/register", users);
-    const { message } = res;
-    message === "success" &&
+    const res = await post("/auth/register", {
+      name: "fahmis",
+      age: "20",
+      country: "indonesia",
+      email: "sugiartofahmi@gmail.com",
+      password: "12345678",
+      confirmPassword: "12345678",
+    });
+    const { status } = res;
+    status === "success" &&
       setUsers({
         name: "",
         age: "",
