@@ -4,12 +4,13 @@ import {
   saveUserData,
   removeToken,
   removeUserData,
+  getUserData,
 } from "@/services";
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: {
+    user: getUserData() || {
       id: "",
       name: "",
     },

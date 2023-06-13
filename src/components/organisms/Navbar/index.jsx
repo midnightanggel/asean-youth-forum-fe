@@ -3,8 +3,10 @@ import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "@/store";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((state) => state.user.user.name);
 
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ export const Navbar = () => {
       : "text-black";
   const handleLogout = () => {
     dispatch(logout());
+    setShowMenu(false);
   };
 
   return (
@@ -21,7 +24,7 @@ export const Navbar = () => {
       <figure className="w-[90px]">
         <img src="/logo/asyf-logo.png" alt="" />
       </figure>
-      <nav className="flex flex-row items-center justify-between w-full ">
+      <nav className="flex flex-row items-center justify-between w-full relative">
         <div className="flex flex-row gap-5 font-semibold ">
           <NavLink to="/" className={navActive}>
             Home
@@ -36,18 +39,23 @@ export const Navbar = () => {
             Forums
           </NavLink>
         </div>
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-row gap-5 ">
           {user != `` ? (
-            <Button
-              weight="normal"
-              padding="1"
-              width="100"
-              font="base"
-              variant="primary"
-              onClick={handleLogout}
+            <figure
+              onClick={() => setShowMenu(!showMenu)}
+              className={`flex flex-row  gap-3 items-center hover:bg-gray-300 cursor-pointer p-2 rounded-lg ${
+                showMenu && "bg-gray-300"
+              } `}
             >
-              logout
-            </Button>
+              <img
+                className="w-[40px] rounded-full aspect-square"
+                src="/img/ava.jpg"
+                alt=""
+              />
+              <figcaption className="capitalize text-base font-medium ">
+                {user}
+              </figcaption>
+            </figure>
           ) : (
             <Fragment>
               <Button
@@ -71,6 +79,26 @@ export const Navbar = () => {
                 Login
               </Button>
             </Fragment>
+          )}
+          {showMenu && (
+            <div className=" flex flex-col absolute bg-[#F0F2F5] top-14 right-0 w-auto  py-2 px-3 rounded-lg gap-y-2">
+              <div className="flex flex-row items-center gap-3 border-b-2 border-gray-400 h-[60px] ">
+                <img
+                  className="w-[45px] rounded-full aspect-square"
+                  src="/img/ava.jpg"
+                  alt=""
+                />
+                <h1 className="capitalize text-base font-semibold ">
+                  Lorem ipsum
+                </h1>
+              </div>
+              <h1
+                onClick={handleLogout}
+                className="text-base font-medium cursor-pointer text-red-500"
+              >
+                Logout
+              </h1>
+            </div>
           )}
         </div>
       </nav>

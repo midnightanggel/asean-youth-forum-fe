@@ -1,4 +1,5 @@
 import { MainLayout, ContentLayout, FormField, Article } from "@/components";
+import { formatDate } from "@/utils";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { Carousel } from "@/components";
 import { useEffect } from "react";
@@ -33,7 +34,7 @@ export const Articles = () => {
                 title={el.title}
                 content={el.content}
                 image={el.image}
-                date={el.date}
+                date={formatDate(el.date)}
                 id={el._id}
               />
             ))}
