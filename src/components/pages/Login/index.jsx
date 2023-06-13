@@ -2,12 +2,14 @@ import { AuthLayout, FormField, Button, Form } from "@/components";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { post, saveToken, saveUserData } from "@/services";
+import { post } from "@/services";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "@/store";
 export const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [users, setUsers] = useState({
     email: "",
     password: "",
@@ -24,9 +26,13 @@ export const Login = () => {
         email: "",
         password: "",
       }),
-      saveToken(token),
-      saveUserData(user),
-      navigate("/");
+      dispatch(
+        login({
+          token,
+          user,
+        })
+      );
+    navigate("/");
   };
 
   return (

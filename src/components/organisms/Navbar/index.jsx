@@ -1,14 +1,21 @@
 import { Button } from "@/components";
-import { useEffect } from "react";
+import { Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logout } from "@/store";
 
 export const Navbar = () => {
+  const user = useSelector((state) => state.user.user.name);
+
+  const dispatch = useDispatch();
   const navActive = ({ isActive }) =>
     isActive
       ? "text-[#1dbc40] underline underline-offset-8 decoration-4"
       : "text-black";
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
-  useEffect(() => {});
   return (
     <header className="z-10 flex flex-row bg-[#F0F2F5] gap-5 w-full h-[13vh] text-base px-[15vh] items-center drop-shadow-md fixed ">
       <figure className="w-[90px]">
@@ -30,26 +37,41 @@ export const Navbar = () => {
           </NavLink>
         </div>
         <div className="flex flex-row gap-5">
-          <Button
-            weight="normal"
-            padding="1"
-            width="100"
-            font="base"
-            variant="primary"
-            to="/register"
-          >
-            Register
-          </Button>
-          <Button
-            weight="normal"
-            padding="1"
-            width="100"
-            font="base"
-            variant="primary-outline"
-            to="/login"
-          >
-            Login
-          </Button>
+          {user != `` ? (
+            <Button
+              weight="normal"
+              padding="1"
+              width="100"
+              font="base"
+              variant="primary"
+              onClick={handleLogout}
+            >
+              logout
+            </Button>
+          ) : (
+            <Fragment>
+              <Button
+                weight="normal"
+                padding="1"
+                width="100"
+                font="base"
+                variant="primary"
+                to="/register"
+              >
+                Register
+              </Button>
+              <Button
+                weight="normal"
+                padding="1"
+                width="100"
+                font="base"
+                variant="primary-outline"
+                to="/login"
+              >
+                Login
+              </Button>
+            </Fragment>
+          )}
         </div>
       </nav>
     </header>
