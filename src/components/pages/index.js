@@ -5,3 +5,4 @@ export * from "./Forums";
 export * from "./Login";
 export * from "./Register";
 export * from "./ForumDetail";
+export * from "./ArticleDetail";

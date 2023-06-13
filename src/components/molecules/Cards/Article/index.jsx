@@ -34,6 +34,7 @@ export const Article = (props) => {
           width="150"
           font="sm"
           variant="primary"
+          to="/articles/1"
         >
           Read More
           <TbCircleArrowRightFilled className="text-[20px]" />
