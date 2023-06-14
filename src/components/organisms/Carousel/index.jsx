@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { Link } from "react-router-dom";
 export const Carousel = ({ data }) => {
   const [slides, setSlides] = useState(data);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +21,7 @@ export const Carousel = ({ data }) => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <Fragment>
+    <Link to={`/articles/${slides[currentIndex]._id}`}>
       <div className="relative w-full h-[450px] group">
         <div
           style={{
@@ -57,6 +58,6 @@ export const Carousel = ({ data }) => {
             </div>
           ))}
       </div>
-    </Fragment>
+    </Link>
   );
 };

@@ -10,10 +10,17 @@ export const ArticleDetail = () => {
   const user = useSelector((state) => state.user.user.name);
   const [comment, setComment] = useState("");
   const [article, setArticle] = useState({});
+  const [mostCommented, setMostCommented] = useState([]);
+
   const { id } = useParams();
   const getArticle = async () => {
     const res = await get(`/articles/${id}`);
     setArticle(res);
+  };
+
+  const getMostCommented = async () => {
+    const res = await get(`/articles/most-commented`);
+    setMostCommented(res);
   };
 
   const submitComment = async () => {
@@ -22,7 +29,8 @@ export const ArticleDetail = () => {
   };
   useEffect(() => {
     getArticle();
-  }, []);
+    getMostCommented();
+  }, [id]);
   return (
     <MainLayout>
       <ContentLayout padding={true} className="flex-row  pt-[10vh] gap-4">
@@ -117,98 +125,30 @@ export const ArticleDetail = () => {
         <section className="flex flex-col  w-1/3 gap-3 ">
           <h1 className="text-xl font-semibold">Most Popular </h1>
           <div className="flex flex-col gap-2">
-            <div className="flex flex-row gap-2 cursor-pointer">
-              <div className=" w-2/5">
-                <img
-                  src="/img/home.png"
-                  className="rounded-lg w-full h-full"
-                  alt=""
-                />
-              </div>
-              <div className=" w-3/5 flex flex-col justify-between">
-                <h1 className="text-lg font-medium line-clamp-3 leading-6">
-                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
-                  Besar
-                </h1>
-                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
-                  <MdOutlineDateRange />
-                  <h1>
-                    {formatDate(
-                      article?.status == "success" && article.data.date
-                    )}
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 cursor-pointer">
-              <div className=" w-2/5">
-                <img
-                  src="/img/home.png"
-                  className="rounded-lg w-full h-full"
-                  alt=""
-                />
-              </div>
-              <div className=" w-3/5 flex flex-col justify-between">
-                <h1 className="text-lg font-medium line-clamp-3 leading-6">
-                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
-                  Besar
-                </h1>
-                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
-                  <MdOutlineDateRange />
-                  <h1>
-                    {formatDate(
-                      article?.status == "success" && article.data.date
-                    )}
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 cursor-pointer">
-              <div className=" w-2/5">
-                <img
-                  src="/img/home.png"
-                  className="rounded-lg w-full h-full"
-                  alt=""
-                />
-              </div>
-              <div className=" w-3/5 flex flex-col justify-between">
-                <h1 className="text-lg font-medium line-clamp-3 leading-6">
-                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
-                  Besar
-                </h1>
-                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
-                  <MdOutlineDateRange />
-                  <h1>
-                    {formatDate(
-                      article?.status == "success" && article.data.date
-                    )}
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 cursor-pointer">
-              <div className=" w-2/5">
-                <img
-                  src="/img/home.png"
-                  className="rounded-lg w-full h-full"
-                  alt=""
-                />
-              </div>
-              <div className=" w-3/5 flex flex-col justify-between">
-                <h1 className="text-lg font-medium line-clamp-3 leading-6">
-                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
-                  Besar
-                </h1>
-                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
-                  <MdOutlineDateRange />
-                  <h1>
-                    {formatDate(
-                      article?.status == "success" && article.data.date
-                    )}
-                  </h1>
-                </div>
-              </div>
-            </div>
+            {mostCommented.status == "success" &&
+              mostCommented.data.length != 0 &&
+              mostCommented.data.map((el, i) => (
+                <Link key={i} to={`/articles/${el._id}`}>
+                  <div className="flex flex-row gap-2 cursor-pointer">
+                    <div className=" w-2/5">
+                      <img
+                        src={el.image.replace("/upload/", "/upload/q_20/")}
+                        className="rounded-lg w-full h-full"
+                        alt=""
+                      />
+                    </div>
+                    <div className=" w-3/5 flex flex-col justify-between">
+                      <h1 className="text-base font-medium line-clamp-3 leading-6">
+                        {el.title}
+                      </h1>
+                      <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+                        <MdOutlineDateRange />
+                        <h1>{formatDate(el.date)}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </section>
       </ContentLayout>

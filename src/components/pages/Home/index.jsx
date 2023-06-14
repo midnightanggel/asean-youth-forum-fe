@@ -9,14 +9,14 @@ import { get } from "@/services";
 import { useState, useEffect } from "react";
 
 export const Home = () => {
-  const [articles, setArticles] = useState([]);
-  const getArticles = async () => {
-    const res = await get("/articles");
-    setArticles(res.data);
+  const [mostCommented, setMostCommented] = useState([]);
+  const getMostCommented = async () => {
+    const res = await get(`/articles/most-commented`);
+    setMostCommented(res.data);
   };
 
   useEffect(() => {
-    getArticles();
+    getMostCommented();
   }, []);
   return (
     <MainLayout>
@@ -61,11 +61,11 @@ export const Home = () => {
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
             <h1 className="font-bold text-3xl">Articles</h1>
-            <p className="font-medium text-lg  text-[#747474]">Latest</p>
+            <p className="font-medium text-lg  text-[#747474]">Popular</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            {articles.length != 0 &&
-              articles
+            {mostCommented.length != 0 &&
+              mostCommented
                 .slice(0, 3)
                 .map((el, i) => (
                   <Article
@@ -82,7 +82,7 @@ export const Home = () => {
         <div className="flex flex-col gap-2">
           <div className="flex flex-col ">
             <h1 className="font-bold text-3xl">Forums</h1>
-            <p className="font-medium text-lg  text-[#747474]">Latest</p>
+            <p className="font-medium text-lg  text-[#747474]">Popular</p>
           </div>
           <div className="flex flex-wrap gap-5">
             <Forum />

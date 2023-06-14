@@ -7,9 +7,22 @@ import { useState } from "react";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
+  const [search, setSearch] = useState("");
+  const [showCarousel, setShowCarousel] = useState(true);
   const getArticles = async () => {
     const res = await get("/articles");
     setArticles(res.data);
+  };
+
+  const handleSearch = async (e) => {
+    if (e.key === "Enter") {
+      setShowCarousel(false);
+      const res = await get("/articles", {
+        search: search,
+      });
+      setArticles(res.data);
+      console.log(res.data);
+    }
   };
 
   useEffect(() => {
@@ -20,11 +33,21 @@ export const Articles = () => {
       <ContentLayout padding={true} className="flex-col gap-5 pt-[10vh]">
         <div className="flex flex-row w-full justify-between items-center">
           <h1 className="font-bold text-3xl">Articles</h1>
-          <FormField padding="3" placeholder="Search" width="auto" type="text">
+          <FormField
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleSearch}
+            padding="3"
+            placeholder="Search"
+            width="auto"
+            type="text"
+          >
             <BiSearchAlt2 />
           </FormField>
         </div>
-        {articles.length != 0 && <Carousel data={articles.slice(0, 5)} />}
+        {showCarousel && articles.length != 0 && (
+          <Carousel data={articles.slice(0, 5)} />
+        )}
         <div className="flex flex-wrap w-full gap-5">
           {articles.length != 0 &&
             articles.map((el, i) => (
