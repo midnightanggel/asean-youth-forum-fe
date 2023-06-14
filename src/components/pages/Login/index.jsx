@@ -1,12 +1,13 @@
 import { AuthLayout, FormField, Button, Form } from "@/components";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { post } from "@/services";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "@/store";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 export const Login = () => {
+  const location = useLocation();
+  const redirect = new URLSearchParams(location.search).get("redirect");
   const [showPassword, setShowPassword] = useState("password");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export const Login = () => {
           user,
         })
       );
-    navigate("/");
+    redirect ? navigate(redirect) : navigate("/");
   };
 
   return (

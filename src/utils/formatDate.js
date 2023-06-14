@@ -1,16 +1,15 @@
 export const formatDate = (dateString) => {
-  const options = {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    hour12: false,
-  };
-  const formattedDateTime = new Date(dateString).toLocaleDateString(
-    "en-US",
-    options
-  );
-  return formattedDateTime;
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  hours = hours.toString().padStart(2, "0");
+  minutes = minutes.toString().padStart(2, "0");
+
+  const formattedDate = `${day} ${month}, ${year} at ${hours}:${minutes}`;
+
+  return formattedDate;
 };

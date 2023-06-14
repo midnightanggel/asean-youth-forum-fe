@@ -88,9 +88,7 @@ export const Navbar = () => {
                   src="/img/ava.jpg"
                   alt=""
                 />
-                <h1 className="capitalize text-base font-semibold ">
-                  Lorem ipsum
-                </h1>
+                <h1 className="capitalize text-base font-semibold ">{user}</h1>
               </div>
               <h1
                 onClick={handleLogout}
