@@ -20,8 +20,8 @@ export const ArticleDetail = () => {
   }, []);
   return (
     <MainLayout>
-      <ContentLayout padding={true} className="flex-row  pt-[10vh]">
-        <section className=" w-3/4 flex flex-col gap-2">
+      <ContentLayout padding={true} className="flex-row  pt-[10vh] gap-4">
+        <section className=" w-2/3 flex flex-col gap-2">
           <h1 className="font-bold text-3xl">
             {article?.status == "success" && article.data.title}
           </h1>
@@ -144,8 +144,102 @@ export const ArticleDetail = () => {
             </div>
           </div>
         </section>
-        <section className="  w-1/4">
-          <h1>test</h1>
+        <section className="flex flex-col  w-1/3 gap-3 ">
+          <h1 className="text-xl font-semibold">Most Popular </h1>
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-2 cursor-pointer">
+              <div className=" w-2/5">
+                <img
+                  src="/img/home.png"
+                  className="rounded-lg w-full h-full"
+                  alt=""
+                />
+              </div>
+              <div className=" w-3/5 flex flex-col justify-between">
+                <h1 className="text-lg font-medium line-clamp-3 leading-6">
+                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
+                  Besar
+                </h1>
+                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+                  <MdOutlineDateRange />
+                  <h1>
+                    {formatDate(
+                      article?.status == "success" && article.data.date
+                    )}
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 cursor-pointer">
+              <div className=" w-2/5">
+                <img
+                  src="/img/home.png"
+                  className="rounded-lg w-full h-full"
+                  alt=""
+                />
+              </div>
+              <div className=" w-3/5 flex flex-col justify-between">
+                <h1 className="text-lg font-medium line-clamp-3 leading-6">
+                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
+                  Besar
+                </h1>
+                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+                  <MdOutlineDateRange />
+                  <h1>
+                    {formatDate(
+                      article?.status == "success" && article.data.date
+                    )}
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 cursor-pointer">
+              <div className=" w-2/5">
+                <img
+                  src="/img/home.png"
+                  className="rounded-lg w-full h-full"
+                  alt=""
+                />
+              </div>
+              <div className=" w-3/5 flex flex-col justify-between">
+                <h1 className="text-lg font-medium line-clamp-3 leading-6">
+                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
+                  Besar
+                </h1>
+                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+                  <MdOutlineDateRange />
+                  <h1>
+                    {formatDate(
+                      article?.status == "success" && article.data.date
+                    )}
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row gap-2 cursor-pointer">
+              <div className=" w-2/5">
+                <img
+                  src="/img/home.png"
+                  className="rounded-lg w-full h-full"
+                  alt=""
+                />
+              </div>
+              <div className=" w-3/5 flex flex-col justify-between">
+                <h1 className="text-lg font-medium line-clamp-3 leading-6">
+                  Hasil Singapore Open 2023: Penuh Drama, Ginting Lolos ke 16
+                  Besar
+                </h1>
+                <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+                  <MdOutlineDateRange />
+                  <h1>
+                    {formatDate(
+                      article?.status == "success" && article.data.date
+                    )}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </ContentLayout>
     </MainLayout>
