@@ -1,5 +1,5 @@
 import { MdOutlineDateRange } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
+import { formatDate } from "@/utils";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Button } from "@/components";
 export const Article = (props) => {
@@ -9,7 +9,7 @@ export const Article = (props) => {
       <figure className="w-full ">
         <img
           className="aspect-[20/8] object-cover rounded-t-lg "
-          src={image}
+          src={image.replace("/upload/", "/upload/q_20/")}
           alt=""
         />
       </figure>
@@ -17,7 +17,7 @@ export const Article = (props) => {
         <h1 className="font-semibold line-clamp-2  h-12">{title}</h1>
         <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
           <MdOutlineDateRange />
-          <h1>{date}</h1>
+          <h1>{formatDate(date)}</h1>
         </div>
         <p className="font-normal text-sm  text-[#1f1e1e] text-justify pb-1 line-clamp-3">
           {content}

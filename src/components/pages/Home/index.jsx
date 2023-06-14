@@ -5,8 +5,20 @@ import {
   Article,
   Forum,
 } from "@/components";
+import { get } from "@/services";
+import { formatDate } from "@/utils";
+import { useState, useEffect } from "react";
 
 export const Home = () => {
+  const [articles, setArticles] = useState([]);
+  const getArticles = async () => {
+    const res = await get("/articles");
+    setArticles(res.data);
+  };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
   return (
     <MainLayout>
       <ContentLayout
@@ -53,9 +65,19 @@ export const Home = () => {
             <p className="font-medium text-lg  text-[#747474]">Latest</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            <Article />
-            <Article />
-            <Article />
+            {articles.length != 0 &&
+              articles
+                .slice(0, 3)
+                .map((el, i) => (
+                  <Article
+                    key={i}
+                    title={el.title}
+                    content={el.content}
+                    image={el.image}
+                    date={el.date}
+                    id={el._id}
+                  />
+                ))}
           </div>
         </div>
         <div className="flex flex-col gap-2">

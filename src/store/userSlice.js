@@ -23,7 +23,6 @@ export const userSlice = createSlice({
       };
       saveToken(action.payload.token);
       saveUserData(action.payload.user);
-      console.log("login");
     },
     logout: (state, action) => {
       state.user = {
