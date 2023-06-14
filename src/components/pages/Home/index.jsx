@@ -6,7 +6,6 @@ import {
   Forum,
 } from "@/components";
 import { get } from "@/services";
-import { formatDate } from "@/utils";
 import { useState, useEffect } from "react";
 
 export const Home = () => {

@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { getToken } from "./token.js";
+const token = getToken();
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
@@ -7,11 +8,11 @@ const api = axios.create({
   },
 });
 
-export const get = async (url, params = {}, token) => {
+export const get = async (url, params = {}) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
       params,
     };
@@ -22,11 +23,11 @@ export const get = async (url, params = {}, token) => {
   }
 };
 
-export const post = async (url, data, token) => {
+export const post = async (url, data) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     };
     const response = await api.post(url, data, config);
@@ -36,11 +37,11 @@ export const post = async (url, data, token) => {
   }
 };
 
-export const put = async (url, data, token) => {
+export const put = async (url, data) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     };
     const response = await api.put(url, data, config);
@@ -50,11 +51,11 @@ export const put = async (url, data, token) => {
   }
 };
 
-export const remove = async (url, token) => {
+export const remove = async (url) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     };
     const response = await api.delete(url, config);

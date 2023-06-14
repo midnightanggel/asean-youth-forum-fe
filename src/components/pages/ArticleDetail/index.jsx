@@ -1,6 +1,6 @@
 import { MainLayout, ContentLayout, FormField, Button } from "@/components";
 import { useParams, Link } from "react-router-dom";
-import { get } from "@/services";
+import { get, post } from "@/services";
 import { formatDate } from "@/utils";
 import { useState, useEffect, Fragment } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
@@ -8,13 +8,18 @@ import { useSelector } from "react-redux";
 
 export const ArticleDetail = () => {
   const user = useSelector((state) => state.user.user.name);
-  const { id } = useParams();
+  const [comment, setComment] = useState("");
   const [article, setArticle] = useState({});
+  const { id } = useParams();
   const getArticle = async () => {
     const res = await get(`/articles/${id}`);
     setArticle(res);
   };
 
+  const submitComment = async () => {
+    const res = await post(`/articles/${id}/comment`, { comment });
+    res.status === "success" && (getArticle(), setComment(""));
+  };
   useEffect(() => {
     getArticle();
   }, []);
@@ -60,6 +65,8 @@ export const ArticleDetail = () => {
                   width="full"
                   type="text"
                   name="comment"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
                 />
                 <Button
                   weight="light"
@@ -67,6 +74,7 @@ export const ArticleDetail = () => {
                   width="100"
                   font="base"
                   variant="primary"
+                  onClick={submitComment}
                 >
                   Send
                 </Button>
@@ -85,63 +93,25 @@ export const ArticleDetail = () => {
           </div>
           <h1 className="text-lg font-semibold">Comments </h1>
           <div className="flex flex-col gap-3">
-            <div className="flex flex-row gap-2">
-              <img
-                className="w-[40px] h-[40px] rounded-full aspect-square"
-                src="/img/ava.jpg"
-                alt=""
-              />
-              <div>
-                <h1 className="text-base font-semibold flex gap-2">
-                  Fahmis
-                  <span className="text-[#747474] flex items-center text-xs font-normal ">
-                    13 June, 2023 at 13:13
-                  </span>
-                </h1>
-                <p className="text-base text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row gap-2">
-              <img
-                className="w-[40px] h-[40px] rounded-full aspect-square"
-                src="/img/ava.jpg"
-                alt=""
-              />
-              <div>
-                <h1 className="text-base font-semibold flex gap-2">
-                  Fahmis
-                  <span className="text-[#747474] flex items-center text-xs font-normal ">
-                    13 June, 2023 at 13:13
-                  </span>
-                </h1>
-                <p className="text-base text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row gap-2">
-              <img
-                className="w-[40px] h-[40px] rounded-full aspect-square"
-                src="/img/ava.jpg"
-                alt=""
-              />
-              <div>
-                <h1 className="text-base font-semibold flex gap-2">
-                  Fahmis
-                  <span className="text-[#747474] flex items-center text-xs font-normal ">
-                    13 June, 2023 at 13:13
-                  </span>
-                </h1>
-                <p className="text-base text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                  optio sunt, enim provident blanditiis minus? Quis laborum
-                  accusamus incidunt reprehenderit quam facilis mollitia
-                  voluptatibus inventore. Odit porro distinctio cum eum.
-                </p>
-              </div>
-            </div>
+            {article?.status == "success" &&
+              article.data.comments.map((el, i) => (
+                <div key={i} className="flex flex-row gap-2">
+                  <img
+                    className="w-[40px] h-[40px] rounded-full aspect-square"
+                    src="/img/ava.jpg"
+                    alt=""
+                  />
+                  <div>
+                    <h1 className="text-base font-semibold flex gap-2 capitalize">
+                      {el.user.name}
+                      <span className="text-[#747474] flex items-center text-xs font-normal ">
+                        {formatDate(el.createdAt)}
+                      </span>
+                    </h1>
+                    <p className="text-base text-justify">{el.comment}</p>
+                  </div>
+                </div>
+              ))}
           </div>
         </section>
         <section className="flex flex-col  w-1/3 gap-3 ">
