@@ -2,18 +2,6 @@ import clsx from "clsx";
 import { TextField } from "@/components";
 
 export const FormField = (props) => {
-  // const {
-  //   children,
-  //   value,
-  //   padding,
-  //   width,
-  //   placeholder,
-  //   type,
-  //   accept,
-  //   onChange,
-  //   name,
-  // } = props;
-
   const inputWidth = clsx(
     `flex flex-row bg-white items-center justify-between border-2 border-[#D9D9D9] rounded-lg`,
     {
