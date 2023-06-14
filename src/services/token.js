@@ -2,7 +2,7 @@ const TOKEN_KEY = "access_token";
 const USER = "user_data";
 
 export const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
+  return JSON.parse(localStorage.getItem(TOKEN_KEY));
 };
 
 export const getUserData = () => {
