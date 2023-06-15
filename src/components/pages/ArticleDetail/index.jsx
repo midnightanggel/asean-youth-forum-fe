@@ -99,7 +99,7 @@ export const ArticleDetail = () => {
                 <div key={i} className="flex flex-row gap-2">
                   <img
                     className="w-[40px] h-[40px] rounded-full aspect-square"
-                    src="/img/ava.jpg"
+                    src={el.user.image}
                     alt=""
                   />
                   <div>

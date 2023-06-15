@@ -13,6 +13,7 @@ export const userSlice = createSlice({
     user: getUserData() || {
       id: "",
       name: "",
+      image: "",
     },
   },
   reducers: {
@@ -20,6 +21,7 @@ export const userSlice = createSlice({
       state.user = {
         id: action.payload.user.id,
         name: action.payload.user.name,
+        image: action.payload.user.image,
       };
       saveToken(action.payload.token);
       saveUserData(action.payload.user);
@@ -28,6 +30,7 @@ export const userSlice = createSlice({
       state.user = {
         id: "",
         name: "",
+        image: "",
       };
       removeToken();
       removeUserData();
