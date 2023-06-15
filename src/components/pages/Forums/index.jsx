@@ -10,11 +10,27 @@ import {
 import { useState, useEffect } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
-import { get } from "@/services";
+import { get, post } from "@/services";
 export const Forums = () => {
   const [showModal, setShowModal] = useState(false);
   const [forums, setForums] = useState([]);
   const [search, setSearch] = useState("");
+  const [newForum, setNewForum] = useState({
+    title: "",
+    description: "",
+    image: "",
+  });
+
+  const createForum = async (e) => {
+    e.preventDefault();
+    const res = await post("/forums", newForum);
+    console.log(res);
+  };
+
+  const handleChange = (e) => {
+    setNewForum({ ...newForum, [e.target.name]: e.target.value });
+  };
+
   const getForums = async () => {
     const res = await get("/forums");
     setForums(res);
@@ -46,7 +62,7 @@ export const Forums = () => {
               className="absolute top-5 right-5 text-red-500 text-2xl font-semibold cursor-pointer"
             />
 
-            <Form className="gap-7">
+            <Form onSubmit={createForum} className="gap-7">
               <div className="flex flex-col gap-1 items-center">
                 <h1 className="font-bold text-3xl">Add Forum</h1>
                 <h1 className="font-normal text-base ">Let's contribute</h1>
@@ -57,12 +73,18 @@ export const Forums = () => {
                   placeholder="Title"
                   width="full"
                   type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={newForum.title}
                 />
                 <FormField
                   padding="2"
-                  placeholder="About"
+                  placeholder="Description"
                   width="full"
                   type="text"
+                  name="description"
+                  onChange={handleChange}
+                  value={newForum.description}
                 />
 
                 <FormField
@@ -71,6 +93,9 @@ export const Forums = () => {
                   width="full"
                   type="file"
                   accept="image/*"
+                  name="image"
+                  onChange={handleChange}
+                  value={newForum.image}
                 />
               </div>
               <Button
@@ -79,8 +104,9 @@ export const Forums = () => {
                 width="full"
                 font="base"
                 variant="primary"
+                type="submit"
               >
-                Add Forum
+                Create Forum
               </Button>
             </Form>
           </section>
