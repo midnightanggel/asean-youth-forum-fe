@@ -12,7 +12,7 @@ export const Home = () => {
   const [mostCommented, setMostCommented] = useState([]);
   const getMostCommented = async () => {
     const res = await get(`/articles/most-commented`);
-    setMostCommented(res.data);
+    setMostCommented(res);
   };
 
   useEffect(() => {
@@ -64,8 +64,8 @@ export const Home = () => {
             <p className="font-medium text-lg  text-[#747474]">Popular</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            {mostCommented.length != 0 &&
-              mostCommented
+            {mostCommented?.status == "success" &&
+              mostCommented.data
                 .slice(0, 3)
                 .map((el, i) => (
                   <Article

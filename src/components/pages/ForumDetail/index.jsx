@@ -15,8 +15,8 @@ export const ForumDetail = () => {
   const [message, setMessage] = useState("");
   const [forum, setForum] = useState({});
   const [socket, setSocket] = useState(null);
-  const user = useSelector((state) => state.user.user.name);
   const { id } = useParams();
+  const user = useSelector((state) => state.user.user.name);
   const getForum = async () => {
     const res = await get(`/forums/${id}`);
     setForum(res);
@@ -51,37 +51,32 @@ export const ForumDetail = () => {
   return (
     <MainLayout>
       <ContentLayout className="flex-col  pt-[5vh] ">
-        <div className="h-[40vh] w-full relative">
-          {forum.status == "success" && (
+        {forum.status == "success" && (
+          <div className="h-[40vh] w-full relative">
             <img
               src={forum.data.image.replace("/upload/", "/upload/q_50/")}
               className="h-full w-full object-cover"
               alt=""
             />
-          )}
 
-          <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full px-[15vh]">
-            <p className="text-justify text-2xl font-semibold line-clamp-2 capitalize">
-              {forum.status == "success" && forum.data.title}
-            </p>
-            <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
-              <MdOutlineDateRange />
-              <h1>
-                {formatDate(
-                  forum.status == "success" && forum.data.publish_date
-                )}
-              </h1>
-              <h1> | </h1>
-              <BiUserCircle />
-              <h1 className="capitalize">
-                {forum.status == "success" && forum.data.author.name}
-              </h1>
-              <h1> | </h1>
-              <BsChatLeftText />
-              <h1>{forum.status == "success" && forum.data.chats.length}</h1>
+            <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full px-[15vh]">
+              <p className="text-justify text-2xl font-semibold line-clamp-2 capitalize">
+                {forum.data.title}
+              </p>
+              <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
+                <MdOutlineDateRange />
+                <h1>{formatDate(forum.data.publish_date)}</h1>
+                <h1> | </h1>
+                <BiUserCircle />
+                <h1 className="capitalize">{forum.data.author.name}</h1>
+                <h1> | </h1>
+                <BsChatLeftText />
+                <h1>{forum.data.chats.length}</h1>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+
         <div className="px-[15vh] flex flex-col gap-5 py-[5vh] w-full h-full">
           <div className="flex flex-row gap-5 text-base font-bold">
             <h1

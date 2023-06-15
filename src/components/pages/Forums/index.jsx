@@ -17,15 +17,19 @@ export const Forums = () => {
   const [search, setSearch] = useState("");
   const getForums = async () => {
     const res = await get("/forums");
-    setForums(res.data);
+    setForums(res);
+  };
+
+  const getSearchForum = async () => {
+    const res = await get("/forums", {
+      search: search,
+    });
+    setForums(res);
   };
 
   const handleSearch = async (e) => {
     if (e.key === "Enter") {
-      const res = await get("/forums", {
-        search: search,
-      });
-      setForums(res.data);
+      getSearchForum();
     }
   };
 
@@ -95,7 +99,7 @@ export const Forums = () => {
               width="auto"
               type="text"
             >
-              <BiSearchAlt2 />
+              <BiSearchAlt2 onClick={getSearchForum} />
             </FormField>
             <Button
               weight="light"
@@ -111,8 +115,8 @@ export const Forums = () => {
         </div>
 
         <div className="flex flex-wrap w-full gap-5">
-          {forums.length != 0 &&
-            forums.map((el, i) => (
+          {forums?.status == "success" &&
+            forums.data.map((el, i) => (
               <Forum
                 key={i}
                 title={el.title}
