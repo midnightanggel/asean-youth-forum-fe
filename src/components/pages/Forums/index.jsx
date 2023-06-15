@@ -7,11 +7,31 @@ import {
   Modal,
   Form,
 } from "@/components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
+import { get } from "@/services";
 export const Forums = () => {
   const [showModal, setShowModal] = useState(false);
+  const [forums, setForums] = useState([]);
+  const [search, setSearch] = useState("");
+  const getForums = async () => {
+    const res = await get("/forums");
+    setForums(res.data);
+  };
+
+  const handleSearch = async (e) => {
+    if (e.key === "Enter") {
+      const res = await get("/forums", {
+        search: search,
+      });
+      setForums(res.data);
+    }
+  };
+
+  useEffect(() => {
+    getForums();
+  }, []);
   return (
     <MainLayout>
       {showModal && (
@@ -67,6 +87,9 @@ export const Forums = () => {
           <h1 className="font-bold text-3xl">Forums</h1>
           <div className="flex flex-row gap-2">
             <FormField
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleSearch}
               padding="3"
               placeholder="Search"
               width="auto"
@@ -88,14 +111,19 @@ export const Forums = () => {
         </div>
 
         <div className="flex flex-wrap w-full gap-5">
-          <Forum />
-          <Forum />
-          <Forum />
-          <Forum />
-          <Forum />
-          <Forum />
-          <Forum />
-          <Forum />
+          {forums.length != 0 &&
+            forums.map((el, i) => (
+              <Forum
+                key={i}
+                title={el.title}
+                description={el.description}
+                image={el.image}
+                date={el.publish_date}
+                author={el.author.name}
+                chats={el.chats.length}
+                id={el._id}
+              />
+            ))}
         </div>
       </ContentLayout>
     </MainLayout>

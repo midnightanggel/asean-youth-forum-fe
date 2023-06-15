@@ -21,7 +21,6 @@ export const Articles = () => {
         search: search,
       });
       setArticles(res.data);
-      console.log(res.data);
     }
   };
 
