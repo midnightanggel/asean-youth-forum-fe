@@ -22,7 +22,7 @@ export const Home = () => {
   useEffect(() => {
     getAllData();
   }, []);
-  console.log(mostChats);
+
   return (
     <MainLayout>
       <ContentLayout

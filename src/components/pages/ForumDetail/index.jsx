@@ -121,7 +121,9 @@ export const ForumDetail = () => {
                         "flex-row-reverse ml-auto  right-0"
                       } `}
                     >
-                      <div className="flex-shrink-0 h-10 w-10 rounded-full bg-black "></div>
+                      <div className="flex-shrink-0 h-10 w-10 rounded-full  ">
+                        <img src={el.user.image} alt="" />
+                      </div>
                       <div
                         className={`gap-2 p-3 flex flex-col ${
                           user && user.id == el.user._id
@@ -137,7 +139,7 @@ export const ForumDetail = () => {
                           <span
                             className={`pt-1 items-end justify-end flex text-sm font-normal gap-1 ${
                               user && user.id == el.user._id
-                                ? "text-[#616161]"
+                                ? "text-[#474747]"
                                 : "text-[#5c5c5c]"
                             }`}
                           >

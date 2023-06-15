@@ -8,6 +8,7 @@ import { useState } from "react";
 export const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((state) => state.user.user.name);
+  const image = useSelector((state) => state.user.user.image);
 
   const dispatch = useDispatch();
   const navActive = ({ isActive }) =>
@@ -49,7 +50,7 @@ export const Navbar = () => {
             >
               <img
                 className="w-[40px] rounded-full aspect-square"
-                src="/img/ava.jpg"
+                src={image}
                 alt=""
               />
               <figcaption className="capitalize text-base font-medium ">
@@ -85,7 +86,7 @@ export const Navbar = () => {
               <div className="flex flex-row items-center gap-3 border-b-2 border-gray-400 h-[60px] ">
                 <img
                   className="w-[45px] rounded-full aspect-square"
-                  src="/img/ava.jpg"
+                  src={image}
                   alt=""
                 />
                 <h1 className="capitalize text-base font-semibold ">{user}</h1>
