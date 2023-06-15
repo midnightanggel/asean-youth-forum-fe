@@ -3,66 +3,82 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import { BsChatLeftText } from "react-icons/bs";
 import { MdSend } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { get } from "@/services";
+import { formatDate } from "@/utils";
 import { io } from "socket.io-client";
-import { useEffect } from "react";
 
 export const ForumDetail = () => {
   const [route, setRoute] = useState("about");
-  const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState("");
+  const [forum, setForum] = useState({});
+  const [socket, setSocket] = useState(null);
+  const user = useSelector((state) => state.user.user.name);
+  const { id } = useParams();
+  const getForum = async () => {
+    const res = await get(`/forums/${id}`);
+    setForum(res);
+  };
 
-  useEffect(() => {
-    const newSocket = io("http://localhost:3000");
-    newSocket.on("connection", (socket) => {
-      console.log(socket);
+  const submitMessage = async () => {
+    const raw = JSON.stringify({
+      message,
     });
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
+    socket.emit("sendToForum", raw);
+    setMessage("");
+  };
 
   useEffect(() => {
     if (socket) {
-      socket.on("message", (data) => {
-        console.log("Received message:", data);
+      socket.on("broadcastToFrontend", (msgRaw) => {
+        const msg = JSON.parse(msgRaw);
+        console.log(msg);
       });
     }
   }, [socket]);
 
-  const sendMessage = () => {
-    console.log(message);
+  useEffect(() => {
+    getForum();
+    const socketInstance = io(import.meta.env.VITE_API_URL);
+    setSocket(socketInstance);
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, []);
 
-    if (socket) {
-      socket.emit("message", message);
-      setMessage("");
-    }
-  };
   return (
     <MainLayout>
       <ContentLayout className="flex-col  pt-[5vh] ">
         <div className="h-[40vh] w-full relative">
-          <img
-            src="/img/forum.png"
-            className="h-full w-full object-cover"
-            alt=""
-          />
+          {forum.status == "success" && (
+            <img
+              src={forum.data.image.replace("/upload/", "/upload/q_50/")}
+              className="h-full w-full object-cover"
+              alt=""
+            />
+          )}
+
           <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full px-[15vh]">
-            <p className="text-justify text-2xl font-semibold">
-              Solemn crowds watch as Lewis, who died earlier this month at the
-              age of 80, is borne by caisson over Edmund Pettus Bridge Solemn
+            <p className="text-justify text-2xl font-semibold line-clamp-2 capitalize">
+              {forum.status == "success" && forum.data.title}
             </p>
             <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
               <MdOutlineDateRange />
-              <h1>24 Oct,2021</h1>
+              <h1>
+                {formatDate(
+                  forum.status == "success" && forum.data.publish_date
+                )}
+              </h1>
               <h1> | </h1>
               <BiUserCircle />
-              <h1>Fahmi Sugiarto</h1>
+              <h1 className="capitalize">
+                {forum.status == "success" && forum.data.author.name}
+              </h1>
               <h1> | </h1>
               <BsChatLeftText />
-              <h1>90</h1>
+              <h1>{forum.status == "success" && forum.data.chats.length}</h1>
             </div>
           </div>
         </div>
@@ -91,16 +107,7 @@ export const ForumDetail = () => {
           </div>
           {route == "about" ? (
             <p className="text-justify leading-7 font-medium ">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              {forum.status == "success" && forum.data.description}
             </p>
           ) : (
             <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg py-[5vh] px-[15vh] flex flex-col justify-between ">
@@ -145,7 +152,7 @@ export const ForumDetail = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               >
-                <MdSend onClick={sendMessage} className="text-[#1dbc40]" />
+                <MdSend onClick={submitMessage} className="text-[#1dbc40]" />
               </FormField>
             </div>
           )}

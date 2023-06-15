@@ -85,8 +85,8 @@ export const Home = () => {
             <p className="font-medium text-lg  text-[#747474]">Popular</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            <Forum />
-            <Forum />
+            {/* <Forum />
+            <Forum /> */}
           </div>
         </div>
       </ContentLayout>
