@@ -49,7 +49,7 @@ export const Navbar = () => {
               } `}
             >
               <img
-                className="w-[40px] rounded-full aspect-square"
+                className="w-[40px] rounded-full aspect-square object-cover"
                 src={image}
                 alt=""
               />
@@ -85,7 +85,7 @@ export const Navbar = () => {
             <div className=" flex flex-col absolute bg-[#F0F2F5] top-14 right-0 w-auto  py-2 px-3 rounded-lg gap-y-2">
               <div className="flex flex-row items-center gap-3 border-b-2 border-gray-400 h-[60px] ">
                 <img
-                  className="w-[45px] rounded-full aspect-square"
+                  className="w-[45px] rounded-full aspect-square object-cover"
                   src={image}
                   alt=""
                 />
