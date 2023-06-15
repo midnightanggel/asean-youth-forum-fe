@@ -34,75 +34,68 @@ export const ArticleDetail = () => {
   return (
     <MainLayout>
       <ContentLayout padding={true} className="flex-row  pt-[10vh] gap-4">
-        <section className=" w-2/3 flex flex-col gap-2">
-          <h1 className="font-bold text-3xl">
-            {article?.status == "success" && article.data.title}
-          </h1>
-          <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
-            <MdOutlineDateRange />
-            <h1>
-              {formatDate(article?.status == "success" && article.data.date)}
-            </h1>
-          </div>
-          {article?.status == "success" && (
+        {article.status == "success" && (
+          <section className=" w-2/3 flex flex-col gap-2">
+            <h1 className="font-bold text-3xl">{article.data.title}</h1>
+            <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
+              <MdOutlineDateRange />
+              <h1>{formatDate(article.data.date)}</h1>
+            </div>
             <img
               className="rounded-xl"
               src={article.data.image.replace("/upload/", "/upload/q_90/")}
               alt=""
             />
-          )}
-          <div className="flex flex-col gap-4 text-justify py-2">
-            {article?.status == "success" &&
-              article.data.content.split(". ").map((el, i) => (
+            <div className="flex flex-col gap-4 text-justify py-2">
+              {article.data.content.split(". ").map((el, i) => (
                 <p key={i} className="text-justify">
                   {el}.
                 </p>
               ))}
-          </div>
-          <div className="flex gap-2 ">
-            {user ? (
-              <Fragment>
-                <img
-                  className="w-[40px] rounded-full aspect-square"
-                  src="/img/ava.jpg"
-                  alt=""
-                />
-                <FormField
-                  padding="2"
-                  placeholder="Write comment here ...."
-                  width="full"
-                  type="text"
-                  name="comment"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <Button
-                  weight="light"
-                  padding="2"
-                  width="100"
-                  font="base"
-                  variant="primary"
-                  onClick={submitComment}
-                >
-                  Send
-                </Button>
-              </Fragment>
-            ) : (
-              <h1 className="font-medium">
-                <Link
-                  className="text-[#1dbc40]"
-                  to={`/login?redirect=/articles/${id}`}
-                >
-                  Log in
-                </Link>{" "}
-                to your account to be able to add comments
-              </h1>
-            )}
-          </div>
-          <h1 className="text-lg font-semibold">Comments </h1>
-          <div className="flex flex-col gap-3">
-            {article?.status == "success" &&
-              article.data.comments.map((el, i) => (
+            </div>
+            <div className="flex gap-2 ">
+              {user ? (
+                <Fragment>
+                  <img
+                    className="w-[40px] rounded-full aspect-square"
+                    src="/img/ava.jpg"
+                    alt=""
+                  />
+                  <FormField
+                    padding="2"
+                    placeholder="Write comment here ...."
+                    width="full"
+                    type="text"
+                    name="comment"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                  <Button
+                    weight="light"
+                    padding="2"
+                    width="100"
+                    font="base"
+                    variant="primary"
+                    onClick={submitComment}
+                  >
+                    Send
+                  </Button>
+                </Fragment>
+              ) : (
+                <h1 className="font-medium">
+                  <Link
+                    className="text-[#1dbc40]"
+                    to={`/login?redirect=/articles/${id}`}
+                  >
+                    Log in
+                  </Link>{" "}
+                  to your account to be able to add comments
+                </h1>
+              )}
+            </div>
+            <h1 className="text-lg font-semibold">Comments </h1>
+            <div className="flex flex-col gap-3">
+              {article.data.comments.map((el, i) => (
                 <div key={i} className="flex flex-row gap-2">
                   <img
                     className="w-[40px] h-[40px] rounded-full aspect-square"
@@ -120,8 +113,9 @@ export const ArticleDetail = () => {
                   </div>
                 </div>
               ))}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
         <section className="flex flex-col  w-1/3 gap-3 ">
           <h1 className="text-xl font-semibold">Most Popular </h1>
           <div className="flex flex-col gap-2">

@@ -9,18 +9,24 @@ export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
   const [showCarousel, setShowCarousel] = useState(true);
+
   const getArticles = async () => {
     const res = await get("/articles");
-    setArticles(res.data);
+    setArticles(res);
+  };
+
+  const getSearchArticle = async () => {
+    const res = await get("/articles", {
+      search: search,
+    });
+    setArticles(res);
+    setShowCarousel(false);
   };
 
   const handleSearch = async (e) => {
     if (e.key === "Enter") {
+      getSearchArticle();
       setShowCarousel(false);
-      const res = await get("/articles", {
-        search: search,
-      });
-      setArticles(res.data);
     }
   };
 
@@ -41,15 +47,15 @@ export const Articles = () => {
             width="auto"
             type="text"
           >
-            <BiSearchAlt2 />
+            <BiSearchAlt2 onClick={getSearchArticle} />
           </FormField>
         </div>
-        {showCarousel && articles.length != 0 && (
-          <Carousel data={articles.slice(0, 5)} />
+        {showCarousel && articles?.status == "success" && (
+          <Carousel data={articles.data.slice(0, 5)} />
         )}
         <div className="flex flex-wrap w-full gap-5">
-          {articles.length != 0 &&
-            articles.map((el, i) => (
+          {articles?.status == "success" &&
+            articles.data.map((el, i) => (
               <Article
                 key={i}
                 title={el.title}
