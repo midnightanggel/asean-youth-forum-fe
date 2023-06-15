@@ -122,7 +122,11 @@ export const ForumDetail = () => {
                       } `}
                     >
                       <div className="flex-shrink-0 h-10 w-10 rounded-full  ">
-                        <img src={el.user.image} alt="" />
+                        <img
+                          className="rounded-full aspect-square object-cover"
+                          src={el.user.image}
+                          alt=""
+                        />
                       </div>
                       <div
                         className={`gap-2 p-3 flex flex-col ${
