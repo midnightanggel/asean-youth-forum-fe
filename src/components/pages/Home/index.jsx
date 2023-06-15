@@ -9,15 +9,20 @@ import { get } from "@/services";
 import { useState, useEffect } from "react";
 
 export const Home = () => {
-  const [mostCommented, setMostCommented] = useState([]);
-  const getMostCommented = async () => {
-    const res = await get(`/articles/most-commented`);
-    setMostCommented(res);
+  const [mostCommented, setMostCommented] = useState({});
+  const [mostChats, setMostChats] = useState({});
+
+  const getAllData = async () => {
+    const resArticles = await get(`/articles/most-commented`);
+    const resForums = await get(`/forums/most-chats`);
+    setMostCommented(resArticles);
+    setMostChats(resForums);
   };
 
   useEffect(() => {
-    getMostCommented();
+    getAllData();
   }, []);
+  console.log(mostChats);
   return (
     <MainLayout>
       <ContentLayout
@@ -75,6 +80,7 @@ export const Home = () => {
                     image={el.image}
                     date={el.date}
                     id={el._id}
+                    comment={el.commentCount}
                   />
                 ))}
           </div>
@@ -85,8 +91,21 @@ export const Home = () => {
             <p className="font-medium text-lg  text-[#747474]">Popular</p>
           </div>
           <div className="flex flex-wrap gap-5">
-            {/* <Forum />
-            <Forum /> */}
+            {mostChats?.status == "success" &&
+              mostChats?.data
+                .slice(0, 4)
+                .map((el, i) => (
+                  <Forum
+                    key={i}
+                    title={el.title}
+                    description={el.description}
+                    image={el.image}
+                    date={el.publish_date}
+                    author={el.author}
+                    chats={el.chatCount}
+                    id={el._id}
+                  />
+                ))}
           </div>
         </div>
       </ContentLayout>

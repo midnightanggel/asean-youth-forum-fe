@@ -18,17 +18,21 @@ export const Forums = () => {
   const [newForum, setNewForum] = useState({
     title: "",
     description: "",
-    image: "",
+    image: null,
   });
 
   const createForum = async (e) => {
     e.preventDefault();
     const res = await post("/forums", newForum);
-    console.log(res);
+    res?.status == "success" && (setShowModal(false), getForums());
   };
 
   const handleChange = (e) => {
-    setNewForum({ ...newForum, [e.target.name]: e.target.value });
+    setNewForum((prev) =>
+      e.target.name === "image"
+        ? { ...prev, image: e.target.files[0] }
+        : { ...prev, [e.target.name]: e.target.value }
+    );
   };
 
   const getForums = async () => {
@@ -95,7 +99,6 @@ export const Forums = () => {
                   accept="image/*"
                   name="image"
                   onChange={handleChange}
-                  value={newForum.image}
                 />
               </div>
               <Button

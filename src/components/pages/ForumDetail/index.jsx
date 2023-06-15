@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { get } from "@/services";
-import { formatDate } from "@/utils";
+import { formatDateFull } from "@/utils";
 import { io } from "socket.io-client";
 
 export const ForumDetail = () => {
@@ -69,7 +69,7 @@ export const ForumDetail = () => {
               </p>
               <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
                 <MdOutlineDateRange />
-                <h1>{formatDate(forum.data.publish_date)}</h1>
+                <h1>{formatDateFull(forum.data.publish_date)}</h1>
                 <h1> | </h1>
                 <BiUserCircle />
                 <h1 className="capitalize">{forum.data.author.name}</h1>
@@ -141,7 +141,7 @@ export const ForumDetail = () => {
                                 : "text-[#5c5c5c]"
                             }`}
                           >
-                            {formatDate(el.sendAt)}
+                            {formatDateFull(el.sendAt)}
                           </span>
                         </p>
                       </div>
