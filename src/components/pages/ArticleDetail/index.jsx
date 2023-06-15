@@ -1,7 +1,7 @@
 import { MainLayout, ContentLayout, FormField, Button } from "@/components";
 import { useParams, Link } from "react-router-dom";
 import { get, post } from "@/services";
-import { formatDate } from "@/utils";
+import { formatDateFull } from "@/utils";
 import { useState, useEffect, Fragment } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
 import { useSelector } from "react-redux";
@@ -39,7 +39,7 @@ export const ArticleDetail = () => {
             <h1 className="font-bold text-3xl">{article.data.title}</h1>
             <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
               <MdOutlineDateRange />
-              <h1>{formatDate(article.data.date)}</h1>
+              <h1>{formatDateFull(article.data.date)}</h1>
             </div>
             <img
               className="rounded-xl"
@@ -106,7 +106,7 @@ export const ArticleDetail = () => {
                     <h1 className="text-base font-semibold flex gap-2 capitalize">
                       {el.user.name}
                       <span className="text-[#747474] flex items-center text-xs font-normal ">
-                        {formatDate(el.createdAt)}
+                        {formatDateFull(el.createdAt)}
                       </span>
                     </h1>
                     <p className="text-base text-justify">{el.comment}</p>
@@ -137,7 +137,7 @@ export const ArticleDetail = () => {
                       </h1>
                       <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
                         <MdOutlineDateRange />
-                        <h1>{formatDate(el.date)}</h1>
+                        <h1>{formatDateFull(el.date)}</h1>
                       </div>
                     </div>
                   </div>

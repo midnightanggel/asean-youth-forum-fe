@@ -21,16 +21,15 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await post("/auth/login", users);
-    const { status, token, user } = res;
-    status === "success" &&
+    res.status === "success" &&
       setUsers({
         email: "",
         password: "",
       }),
       dispatch(
         login({
-          token,
-          user,
+          token: res.token,
+          user: res.user,
         })
       );
     redirect ? navigate(redirect) : navigate("/");

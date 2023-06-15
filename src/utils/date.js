@@ -3,6 +3,16 @@ export const formatDate = (dateString) => {
   const day = date.getDate();
   const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
+  const formattedDate = `${day} ${month}, ${year}`;
+
+  return formattedDate;
+};
+
+export const formatDateFull = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
   let hours = date.getHours();
   let minutes = date.getMinutes();
 

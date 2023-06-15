@@ -63,6 +63,7 @@ export const Articles = () => {
                 image={el.image}
                 date={el.date}
                 id={el._id}
+                comment={el.comments.length}
               />
             ))}
         </div>
