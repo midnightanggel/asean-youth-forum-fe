@@ -40,7 +40,6 @@ export const userSlice = createSlice({
         name: action.payload.user.name,
         image: action.payload.user.image,
       };
-      saveToken(action.payload.token);
       saveUserData(action.payload.user);
     },
   },
