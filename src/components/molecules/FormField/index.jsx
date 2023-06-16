@@ -18,8 +18,13 @@ export const FormField = (props) => {
     }
   );
 
+  const inputVariant = clsx(` `, {
+    "cursor-not-allowed  bg-gray-200 ": props.variant === "disabled",
+  });
+
+  const classname = [inputWidth, inputVariant].join("");
   return (
-    <div className={inputWidth}>
+    <div className={classname}>
       <TextField {...props} />
       <div className={inputPadding}>{props.children}</div>
     </div>

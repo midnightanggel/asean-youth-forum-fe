@@ -38,7 +38,10 @@ export const Login = () => {
   return (
     <AuthLayout direction="row">
       <section className="h-full w-3/5 flex items-center justify-center  ">
-        <Form onSubmit={handleLogin} className="gap-8">
+        <Form
+          onSubmit={handleLogin}
+          className="gap-8 items-center justify-center w-[350px]"
+        >
           <div className="flex flex-col gap-1 items-center">
             <h1 className="font-bold text-3xl">Welcome Back</h1>
             <h1 className="font-normal text-base ">Login into your account</h1>

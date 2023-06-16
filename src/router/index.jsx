@@ -8,6 +8,8 @@ import {
   Login,
   Register,
   ArticleDetail,
+  Dashboard,
+  Profile,
 } from "@/components";
 const router = createBrowserRouter([
   {
@@ -48,6 +50,19 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/dashboard",
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);
 
