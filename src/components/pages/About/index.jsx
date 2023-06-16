@@ -1,43 +1,153 @@
 import { MainLayout, ContentLayout, Button } from "@/components";
+import { TbListDetails } from "react-icons/tb";
+import { MdWork } from "react-icons/md";
+import { Fragment, useState } from "react";
 
 export const About = () => {
+  const [route, setRoute] = useState("about");
   return (
     <MainLayout>
-      <ContentLayout
-        padding={true}
-        className="flex-row bg-[#09644E] text-white justify-between items-center  "
-      >
-        <div className="w-2/5 flex flex-col gap-5">
-          <h1 className="font-bold text-4xl">
-            Uniting ASEAN's Youth for a Better Tomorrow
-          </h1>
-          <p className="font-light text-justify">
-            The ASEAN Youth Forum (AYF) is a platform for young people across
-            the ASEAN region to connect, engage, and collaborate towards a
-            brighter future. Our mission is to empower the youth of ASEAN to
-            take an active role in shaping their communities and countries, and
-            to work together towards sustainable development, peace, and
-            prosperity for all.
-          </p>
-          <Button
-            weight="light"
-            padding="2"
-            width="200"
-            font="base"
-            variant="primary"
-            to="/login"
-          >
-            Let's Contribute
-          </Button>
+      <ContentLayout className="flex-col bg-[#09644E]  justify-center items-center  ">
+        <div className=" w-full h-[70vh]  flex justify-center items-center ">
+          <img
+            className="w-[400px] drop-shadow-xl"
+            src="/logo/asyf-logo.png"
+            alt=""
+          />
         </div>
-        <div className="w-2/5  flex items-end justify-end ">
-          <figcaption className="w-[350px] ">
-            <img
-              className="rounded-lg aspect-square object-cover"
-              src="/img/home.png"
-              alt=""
-            />
-          </figcaption>
+        <div className="w-full min-h-screen px-[15vh] py-[8vh] bg-[#F0F2F5] flex flex-row gap-5">
+          <div className="w-1/4 flex flex-col gap-4">
+            <div
+              onClick={() => setRoute("about")}
+              className={`cursor-pointer font-semibold  text-lg flex flex-row items-center gap-3 ${
+                route == "about"
+                  ? "bg-[#09644E] hover:bg-[#07382c] text-white"
+                  : "bg-gray-300 hover:bg-gray-400 text-black"
+              } px-4 py-3 rounded-lg`}
+            >
+              <TbListDetails className="text-xl" />
+              <h1 className="">About</h1>
+            </div>
+            <div
+              onClick={() => setRoute("job")}
+              className={`cursor-pointer font-semibold  text-lg flex flex-row items-center gap-3 ${
+                route != "about"
+                  ? "bg-[#09644E] hover:bg-[#07382c] text-white"
+                  : "bg-gray-300 hover:bg-gray-400 text-black"
+              } px-4 py-3 rounded-lg`}
+            >
+              <MdWork className="text-xl" />
+              <h1 className="">Job and Function</h1>
+            </div>
+          </div>
+          <div className="w-3/4 text-justify text-lg gap-4 flex flex-col">
+            {route == "about" ? (
+              <Fragment>
+                <p>
+                  The ASEAN Youth Forum is a forum organized by ASEAN
+                  (Association of Southeast Asian Nations) to bring together
+                  youth from all ASEAN member countries to discuss and exchange
+                  information on important issues affecting the ASEAN region.
+                  This forum aims to increase youth participation in the ASEAN
+                  regional integration process and to develop a better
+                  understanding of the needs and expectations of ASEAN youth. In
+                  this forum, ASEAN youth can introduce themselves, interact,
+                  collaborate, and create networks with other youth from across
+                  the ASEAN region.
+                </p>
+                <h1 className="font-bold text-3xl">History</h1>
+                <p>
+                  The history of the ASEAN Youth Forum began in 1975 when ASEAN
+                  established. This forum aims to facilitate dialogue and
+                  exchanges between ASEAN youths in an effort to improve
+                  understanding and regional cooperation among member countries
+                  ASEAN. Every year, young people from all over ASEAN gather to
+                  discuss important issues faced by the ASEAN community, such as
+                  peace and security, economic empowerment, environment, and
+                  health. This forum is also a place to build networking and
+                  strengthening ties between ASEAN youth. Besides In addition,
+                  the ASEAN Youth Forum is also working with the ASEAN Summit
+                  and ASEAN Ministerial Meetings to convey views and aspirations
+                  ASEAN youth at the policy level. This forum is a forum what is
+                  important is for the youth of ASEAN to cast their voice in
+                  ASEAN policy-making and enhancing their role in advancing the
+                  ASEAN community.
+                </p>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <h1 className="font-bold text-3xl">Job</h1>
+                <ol className="list-decimal pl-5">
+                  <li>
+                    Participate actively in discussions and question and answer
+                    sessions. Participants must strive to provide constructive
+                    contributions and views in every given opportunity.
+                  </li>
+                  <li>
+                    Develop ideas and solutions to issues discussed in the
+                    forum. Participants are expected to be able to solve
+                    problems faced in their respective countries by providing
+                    innovative and creative ideas.
+                  </li>
+                  <li>
+                    Develop networking and cooperation with other participants
+                    in the forum. Participants can establish relationships with
+                    other youth from different countries and develop cooperation
+                    that benefits each country.
+                  </li>
+                  <li>
+                    Implement ideas and solutions generated at AYF into
+                    activities or projects in their respective countries.
+                    Participants must try to apply the ideas and solutions that
+                    have been discussed at the AYF to have a positive impact on
+                    their environment.
+                  </li>
+                  <li>
+                    Share experiences and knowledge gained at AYF with others in
+                    their respective countries. Participants can share the
+                    knowledge and experience gained at AYF with colleagues and
+                    other youth in their respective countries to broaden
+                    understanding and awareness of important issues in Asia.
+                  </li>
+                </ol>
+                <h1 className="font-bold text-3xl">Function</h1>
+                <ol className="list-decimal pl-5">
+                  <li>
+                    As a forum for Asian youth to exchange information and
+                    experiences. AYF provides opportunities for participants to
+                    interact with youth from various countries in Asia, so that
+                    they can broaden their horizons and knowledge about
+                    important issues in Asia.
+                  </li>
+                  <li>
+                    As a platform for discussing issues affecting Asia and the
+                    world in general. AYF provides an opportunity for
+                    participants to discuss important issues such as peace,
+                    security, environment and human rights, as well as seek
+                    innovative and creative solutions.
+                  </li>
+                  <li>
+                    As a place to build networks and collaboration. AYF provides
+                    opportunities for participants to establish relationships
+                    and cooperate with other youth in different countries, so as
+                    to expand networks and build fruitful partnerships.
+                  </li>
+                  <li>
+                    As an arena to develop leadership and social skills. AYF
+                    provides opportunities for participants to develop social
+                    skills such as communication, teamwork, and leadership
+                    through discussions, presentations, and other activities.
+                  </li>
+                  <li>
+                    As a means to drive positive change in Asia. AYF provides an
+                    opportunity for participants to fight for important issues
+                    and find innovative and creative solutions, so as to drive
+                    positive change in Asia.
+                  </li>
+                </ol>
+              </Fragment>
+            )}
+          </div>
         </div>
       </ContentLayout>
     </MainLayout>

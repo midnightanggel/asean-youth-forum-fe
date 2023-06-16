@@ -3,7 +3,7 @@ import { TextField } from "@/components";
 
 export const FormField = (props) => {
   const inputWidth = clsx(
-    `flex flex-row bg-white items-center justify-between border-2 border-[#D9D9D9] rounded-lg`,
+    `flex flex-row items-center justify-between border-2 border-[#D9D9D9] rounded-lg`,
     {
       "w-full ": props.width === "full",
       "w-auto ": props.width === "auto",
@@ -18,8 +18,14 @@ export const FormField = (props) => {
     }
   );
 
+  const inputVariant = clsx(` `, {
+    "cursor-not-allowed  bg-gray-200 ": props.variant === "disabled",
+    "bg-white ": props.variant !== "disabled",
+  });
+
+  const classname = [inputWidth, inputVariant].join("");
   return (
-    <div className={inputWidth}>
+    <div className={classname}>
       <TextField {...props} />
       <div className={inputPadding}>{props.children}</div>
     </div>

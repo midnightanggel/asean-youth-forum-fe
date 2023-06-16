@@ -12,7 +12,7 @@ import { io } from "socket.io-client";
 
 export const ForumDetail = () => {
   const user = useSelector((state) => state.user.user);
-  const [route, setRoute] = useState("forum");
+  const [route, setRoute] = useState("about");
   const [message, setMessage] = useState("");
   const [forum, setForum] = useState({});
   const [socket, setSocket] = useState(null);
@@ -58,7 +58,7 @@ export const ForumDetail = () => {
         {forum.status == "success" && (
           <div className="h-[40vh] w-full relative">
             <img
-              src={forum.data.image.replace("/upload/", "/upload/q_50/")}
+              src={forum.data.image.replace("/upload/", "/upload/q_70/")}
               className="h-full w-full object-cover"
               alt=""
             />
