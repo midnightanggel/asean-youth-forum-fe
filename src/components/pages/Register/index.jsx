@@ -36,7 +36,10 @@ export const Register = () => {
   return (
     <AuthLayout direction="reverse">
       <section className="h-full w-3/5 flex items-center justify-center ">
-        <Form onSubmit={handRegister} className="gap-7">
+        <Form
+          onSubmit={handRegister}
+          className="gap-7 items-center justify-center w-[350px]"
+        >
           <div className="flex flex-col gap-1 items-center">
             <h1 className="font-bold text-3xl">Get Started With AYF</h1>
             <h1 className="font-normal text-base ">Let's join us</h1>

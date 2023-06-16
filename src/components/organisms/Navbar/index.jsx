@@ -1,7 +1,7 @@
 import { Button } from "@/components";
 import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logout } from "@/store";
 import { useState } from "react";
 
@@ -82,8 +82,8 @@ export const Navbar = () => {
             </Fragment>
           )}
           {showMenu && (
-            <div className=" flex flex-col absolute bg-[#F0F2F5] top-14 right-0 w-auto  py-2 px-3 rounded-lg gap-y-2">
-              <div className="flex flex-row items-center gap-3 border-b-2 border-gray-400 h-[60px] ">
+            <div className=" flex flex-col absolute bg-[#F0F2F5] top-14 right-0 w-auto  py-2 rounded-lg ">
+              <div className="flex flex-row items-center gap-3 border-b-2 border-gray-400 h-[60px] px-3 ">
                 <img
                   className="w-[45px] rounded-full aspect-square object-cover"
                   src={image}
@@ -91,9 +91,15 @@ export const Navbar = () => {
                 />
                 <h1 className="capitalize text-base font-semibold ">{user}</h1>
               </div>
+              <Link
+                to="/profile"
+                className="text-base font-medium w-full  hover:bg-gray-300 px-3 py-1 mt-1"
+              >
+                Profile
+              </Link>
               <h1
                 onClick={handleLogout}
-                className="text-base font-medium cursor-pointer text-red-500"
+                className="text-base font-medium cursor-pointer text-red-500 w-full hover:bg-gray-300 px-3 py-1 "
               >
                 Logout
               </h1>

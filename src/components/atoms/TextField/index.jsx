@@ -10,12 +10,19 @@ export const TextField = (props) => {
     onChange,
     name,
     onKeyDown,
+    variant,
   } = props;
   const buttonPadding = clsx(`focus:outline-none rounded-l-lg w-full `, {
     "p-1 ": padding === "1",
     "p-2 ": padding === "2",
     "p-3 ": padding === "3",
   });
+  const variantInput = clsx(``, {
+    "cursor-not-allowed ": variant === "disabled",
+  });
+
+  const className = [buttonPadding, variantInput].join("");
+
   return (
     <input
       name={name}
@@ -25,7 +32,8 @@ export const TextField = (props) => {
       placeholder={placeholder}
       type={type}
       value={value}
-      className={buttonPadding}
+      className={className}
+      disabled={variant === "disabled" && true}
     />
   );
 };
