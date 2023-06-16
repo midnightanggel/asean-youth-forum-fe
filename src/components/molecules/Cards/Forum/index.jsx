@@ -7,7 +7,7 @@ import { formatDate } from "@/utils";
 
 export const Forum = (props) => {
   const { title, description, date, author, id, image, chats } = props;
-  const nameLimit = 16;
+  const nameLimit = 15;
   return (
     <div className="bg-white w-[565px] h-[227px] shadow-lg flex flex-row rounded-lg">
       <figure className="w-2/5 h-full">
