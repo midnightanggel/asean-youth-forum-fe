@@ -39,7 +39,7 @@ export const ForumDetail = () => {
     if (scrollElement) {
       scrollElement.scrollTop = scrollElement.scrollHeight;
     }
-  }, [route]);
+  }, [route, forum?.data?.chats]);
 
   useEffect(() => {
     if (socket) {
