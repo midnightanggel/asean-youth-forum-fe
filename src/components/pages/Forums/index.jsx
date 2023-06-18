@@ -1,18 +1,20 @@
 import {
-  MainLayout,
-  ContentLayout,
   Button,
-  Forum,
-  FormField,
-  Modal,
+  ContentLayout,
   Form,
+  FormField,
+  Forum,
+  MainLayout,
+  Modal,
 } from "@/components";
-import { useState, useEffect } from "react";
+import { get, post } from "@/services";
+import { useEffect, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
-import { get, post } from "@/services";
+import { useDispatch, useSelector } from "react-redux";
 export const Forums = () => {
   const [showModal, setShowModal] = useState(false);
+  const user = useSelector((state) => state.user.user.name);
   const [forums, setForums] = useState([]);
   const [search, setSearch] = useState("");
   const [newForum, setNewForum] = useState({
@@ -133,16 +135,18 @@ export const Forums = () => {
             >
               <BiSearchAlt2 onClick={getSearchForum} />
             </FormField>
-            <Button
-              weight="light"
-              padding="2"
-              width="150"
-              font="base"
-              variant="primary"
-              onClick={() => setShowModal(true)}
-            >
-              Add Forum
-            </Button>
+            {user && (
+              <Button
+                weight="light"
+                padding="2"
+                width="150"
+                font="base"
+                variant="primary"
+                onClick={() => setShowModal(true)}
+              >
+                Add Forum
+              </Button>
+            )}
           </div>
         </div>
 
