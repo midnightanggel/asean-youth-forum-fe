@@ -1,13 +1,12 @@
-import { MainLayout, ContentLayout, FormField } from "@/components";
-import { MdOutlineDateRange } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
-import { BsChatLeftText } from "react-icons/bs";
-import { MdSend } from "react-icons/md";
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { ContentLayout, FormField, MainLayout } from "@/components";
 import { get } from "@/services";
 import { formatDateFull } from "@/utils";
+import { useEffect, useState } from "react";
+import { BiUserCircle } from "react-icons/bi";
+import { BsChatLeftText } from "react-icons/bs";
+import { MdOutlineDateRange, MdSend } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 
 export const ForumDetail = () => {
@@ -25,7 +24,9 @@ export const ForumDetail = () => {
   const submitMessage = async () => {
     const raw = JSON.stringify({
       forum_id: id,
+      user_name: user.name,
       user_id: user.id,
+      user_image: user.image,
       message,
     });
     socket.emit("sendToForum", raw);
@@ -37,7 +38,22 @@ export const ForumDetail = () => {
       socket.on("broadcastToFrontend", (msgRaw) => {
         const msg = JSON.parse(msgRaw);
         if (msg.forum_id == id) {
-          getForum();
+          const newChat = {
+            user: {
+              _id: msg.user_id,
+              name: msg.user_name,
+              image: msg.user_image,
+            },
+            message: msg.message,
+            sendAt: msg.sent_at,
+          };
+          setForum((prevState) => ({
+            ...prevState,
+            data: {
+              ...prevState.data,
+              chats: [...prevState.data.chats, newChat],
+            },
+          }));
         }
       });
     }
