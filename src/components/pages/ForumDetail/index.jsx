@@ -1,7 +1,7 @@
 import { ContentLayout, FormField, MainLayout } from "@/components";
 import { get } from "@/services";
 import { formatDateFull } from "@/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { BsChatLeftText } from "react-icons/bs";
 import { MdOutlineDateRange, MdSend } from "react-icons/md";
@@ -16,6 +16,7 @@ export const ForumDetail = () => {
   const [forum, setForum] = useState({});
   const [socket, setSocket] = useState(null);
   const { id } = useParams();
+  const scrollRef = useRef(null);
   const getForum = async () => {
     const res = await get(`/forums/${id}`);
     setForum(res);
@@ -32,6 +33,13 @@ export const ForumDetail = () => {
     socket.emit("sendToForum", raw);
     setMessage("");
   };
+
+  useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.scrollTop = scrollElement.scrollHeight;
+    }
+  }, [forum]);
 
   useEffect(() => {
     if (socket) {
@@ -126,7 +134,10 @@ export const ForumDetail = () => {
             </p>
           ) : (
             <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg py-[5vh] px-[15vh] flex flex-col justify-between ">
-              <div className="w-full h-full flex-grow overflow-x-auto flex flex-col gap-5">
+              <div
+                ref={scrollRef}
+                className="w-full h-[75vh] flex-grow overflow-y-auto flex flex-col gap-5"
+              >
                 {forum.status == "success" &&
                   forum.data.chats.map((el, i) => (
                     <div
@@ -179,6 +190,7 @@ export const ForumDetail = () => {
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && submitMessage()}
                 >
                   <MdSend onClick={submitMessage} className="text-[#1dbc40]" />
                 </FormField>
