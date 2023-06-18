@@ -11,7 +11,7 @@ import { get, post } from "@/services";
 import { useEffect, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 export const Forums = () => {
   const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.user.user.name);
@@ -59,7 +59,7 @@ export const Forums = () => {
     getForums();
   }, []);
   return (
-    <MainLayout>
+    <MainLayout className="md:pt-20 pt-0">
       {showModal && (
         <Modal>
           <section className="bg-[#F0F2F5] w-[500px] h-[500px] rounded-lg flex justify-center items-center relative ">
@@ -121,8 +121,15 @@ export const Forums = () => {
         </Modal>
       )}
       <ContentLayout padding={true} className="flex-col gap-8 pt-[10vh]">
-        <div className="flex flex-row w-full justify-between items-center">
-          <h1 className="font-bold text-3xl">Forums</h1>
+        <div className="flex flex-row w-full justify-between gap-5 md:gap-0 items-center">
+          <h1 className="md:flex hidden  font-bold md:text-3xl text-2xl">
+            Forums
+          </h1>
+          {!user && (
+            <h1 className="flex md:hidden  font-bold md:text-3xl text-2xl">
+              Forums
+            </h1>
+          )}
           <div className="flex flex-row gap-2">
             <FormField
               value={search}

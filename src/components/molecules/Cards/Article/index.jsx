@@ -1,13 +1,13 @@
-import { MdOutlineDateRange } from "react-icons/md";
 import { formatDateFull } from "@/utils";
-import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { BsChatLeftText } from "react-icons/bs";
+import { MdOutlineDateRange } from "react-icons/md";
+import { TbCircleArrowRightFilled } from "react-icons/tb";
 
 import { Button } from "@/components";
 export const Article = (props) => {
   const { title, content, date, id, image, comment } = props;
   return (
-    <div className="bg-white w-[370px] h-[380px] shadow-lg flex flex-col rounded-lg">
+    <div className="bg-white w-[370px] h-auto shadow-lg flex flex-col rounded-lg">
       <figure className="w-full ">
         <img
           className="aspect-[20/8] object-cover rounded-t-lg "
@@ -16,7 +16,7 @@ export const Article = (props) => {
         />
       </figure>
       <div className="px-5 py-3 flex flex-col gap-2  w-full h-full ">
-        <h1 className="font-semibold line-clamp-2  h-12">{title}</h1>
+        <h1 className="font-semibold line-clamp-2 text-base  h-12">{title}</h1>
         <div className="text-[#747474] flex items-center text-sm font-normal gap-1 w-full">
           <MdOutlineDateRange />
           <h1>{formatDateFull(date)}</h1>

@@ -78,20 +78,20 @@ export const ForumDetail = () => {
 
   return (
     <MainLayout>
-      <ContentLayout className="flex-col  pt-[5vh] ">
+      <ContentLayout className="flex-col pt-[5vh] ">
         {forum.status == "success" && (
-          <div className="h-[40vh] w-full relative">
+          <div className="md:h-[40vh] h-[25vh] w-full relative">
             <img
               src={forum.data.image.replace("/upload/", "/upload/q_70/")}
               className="h-full w-full object-cover"
               alt=""
             />
 
-            <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full px-[15vh]">
+            <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full md:px-[15vh] px-6">
               <p className="text-justify text-2xl font-semibold line-clamp-2 capitalize">
                 {forum.data.title}
               </p>
-              <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
+              <div className="text-[#cacaca] flex items-center text-base font-normal md:gap-2 gap-1">
                 <MdOutlineDateRange />
                 <h1>{formatDateFull(forum.data.publish_date)}</h1>
                 <h1> | </h1>
@@ -105,8 +105,8 @@ export const ForumDetail = () => {
           </div>
         )}
 
-        <div className="px-[15vh] flex flex-col gap-5 py-[5vh] w-full h-full">
-          <div className="flex flex-row gap-5 text-base font-bold">
+        <div className="md:px-[15vh] px-6 flex flex-col gap-5 md:py-[5vh] py-[2vh] w-full h-full">
+          <div className="flex flex-row md:gap-5 gap-2 text-base font-bold">
             <h1
               onClick={() => setRoute("about")}
               className={`cursor-pointer ${
@@ -133,16 +133,16 @@ export const ForumDetail = () => {
               {forum.status == "success" && forum.data.description}
             </p>
           ) : (
-            <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg py-[5vh] px-[15vh] flex flex-col justify-between ">
+            <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg md:py-[5vh] py-5 md:px-[15vh] px-3 flex flex-col justify-between ">
               <div
                 ref={scrollRef}
-                className="w-full h-[75vh] flex-grow overflow-y-auto flex flex-col gap-5"
+                className="w-full h-[75vh]  overflow-y-auto flex flex-col gap-5"
               >
                 {forum.status == "success" &&
                   forum.data.chats.map((el, i) => (
                     <div
                       key={i}
-                      className={`max-w-2xl w-full flex gap-2 ${
+                      className={`max-w-2xl w-full flex md:gap-2 gap-1 ${
                         user &&
                         user.id == el.user._id &&
                         "flex-row-reverse ml-auto  right-0"

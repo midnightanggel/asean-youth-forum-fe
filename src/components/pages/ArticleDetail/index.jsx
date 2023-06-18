@@ -1,10 +1,10 @@
-import { MainLayout, ContentLayout, FormField, Button } from "@/components";
-import { useParams, Link } from "react-router-dom";
+import { Button, ContentLayout, FormField, MainLayout } from "@/components";
 import { get, post } from "@/services";
 import { formatDateFull } from "@/utils";
-import { useState, useEffect, Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 export const ArticleDetail = () => {
   const user = useSelector((state) => state.user.user.name);
@@ -35,8 +35,10 @@ export const ArticleDetail = () => {
     <MainLayout>
       <ContentLayout padding={true} className="flex-row  pt-[10vh] gap-4">
         {article.status == "success" && (
-          <section className=" w-2/3 flex flex-col gap-2">
-            <h1 className="font-bold text-3xl">{article.data.title}</h1>
+          <section className=" md:w-2/3 w-full flex flex-col gap-2">
+            <h1 className="font-bold md:text-3xl text-2xl">
+              {article.data.title}
+            </h1>
             <div className="text-[#747474] flex items-center text-sm font-normal gap-1">
               <MdOutlineDateRange />
               <h1>{formatDateFull(article.data.date)}</h1>
@@ -116,7 +118,7 @@ export const ArticleDetail = () => {
             </div>
           </section>
         )}
-        <section className="flex flex-col  w-1/3 gap-3 ">
+        <section className="md:flex hidden flex-col  w-1/3 gap-3 ">
           <h1 className="text-xl font-semibold">Most Popular </h1>
           <div className="flex flex-col gap-2">
             {mostCommented.status == "success" &&
