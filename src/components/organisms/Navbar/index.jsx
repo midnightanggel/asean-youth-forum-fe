@@ -123,9 +123,9 @@ export const Navbar = () => {
                 <NavLink to="/forums" className={mobileNavAcrtive}>
                   Forums
                 </NavLink>
-                <Link to="/profile" className={mobileNavAcrtive}>
+                <NavLink to="/profile" className={mobileNavAcrtive}>
                   Profile
-                </Link>
+                </NavLink>
                 <h1
                   onClick={handleLogout}
                   className="text-base font-medium cursor-pointer text-red-500 w-full hover:bg-gray-300 px-3 py-1 "
