@@ -1,14 +1,14 @@
 import {
-  MainLayout,
-  ContentLayout,
-  FormField,
   Button,
+  ContentLayout,
   Form,
+  FormField,
+  MainLayout,
 } from "@/components";
 import { get, put } from "@/services";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { setNewData } from "@/store";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export const Profile = () => {
   const [newImage, setNewImage] = useState(null);
@@ -63,12 +63,12 @@ export const Profile = () => {
     getUserProfile();
   }, []);
   return (
-    <MainLayout>
-      <ContentLayout padding={true} className="flex-col gap-5 pt-[10vh]">
-        <h1 className="font-bold text-3xl">Profile</h1>
+    <MainLayout className="md:pt-20 pt-5">
+      <ContentLayout padding={true} className="flex-col gap-5 ">
+        <h1 className="font-bold md:text-3xl text-2xl">Profile</h1>
         {user.status === "success" && (
-          <div className="flex flex-row gap-5">
-            <section className="w-1/3  rounded-xl shadow-lg bg-white py-6 px-7 flex flex-col items-center gap-2">
+          <div className="flex md:flex-row flex-col gap-5  ">
+            <section className="md:w-1/3 w-full rounded-xl shadow-lg bg-white py-6 px-7 flex flex-col items-center gap-2">
               {newImage ? (
                 <img
                   className="aspect-square rounded-full"
@@ -96,7 +96,7 @@ export const Profile = () => {
                 onChange={handleChangeImage}
               />
             </section>
-            <section className="w-2/3 rounded-xl shadow-lg bg-white py-6 px-7 flex flex-col  gap-2">
+            <section className="md:w-2/3 w-full rounded-xl shadow-lg bg-white py-6 px-7 flex flex-col  gap-2">
               <Form onSubmit={handleSubmit} className="w-full gap-5 ">
                 <div className="flex flex-col gap-2">
                   <p className="font-medium text-lg ">Full Name</p>

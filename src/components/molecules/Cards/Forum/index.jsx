@@ -1,9 +1,9 @@
-import { MdOutlineDateRange } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
-import { TbCircleArrowRightFilled } from "react-icons/tb";
-import { BsChatLeftText } from "react-icons/bs";
 import { Button } from "@/components";
 import { formatDate } from "@/utils";
+import { BiUserCircle } from "react-icons/bi";
+import { BsChatLeftText } from "react-icons/bs";
+import { MdOutlineDateRange } from "react-icons/md";
+import { TbCircleArrowRightFilled } from "react-icons/tb";
 
 export const Forum = (props) => {
   const { title, description, date, author, id, image, chats } = props;
@@ -19,7 +19,7 @@ export const Forum = (props) => {
       </figure>
       <div className="p-4 flex flex-col justify-between w-3/5 h-full ">
         <div className=" flex flex-col gap-2">
-          <h1 className="font-semibold capitalize ">{title}</h1>
+          <h1 className="font-semibold capitalize  ">{title}</h1>
           <div className="text-[#747474] flex items-center text-sm font-normal gap-1 w-full">
             <MdOutlineDateRange />
             <h1>{formatDate(date)}</h1>

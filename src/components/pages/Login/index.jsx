@@ -1,10 +1,10 @@
-import { AuthLayout, FormField, Button, Form } from "@/components";
-import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { useState } from "react";
+import { AuthLayout, Button, Form, FormField } from "@/components";
 import { post } from "@/services";
-import { useDispatch } from "react-redux";
 import { login } from "@/store";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 export const Login = () => {
   const location = useLocation();
   const redirect = new URLSearchParams(location.search).get("redirect");
@@ -37,10 +37,10 @@ export const Login = () => {
 
   return (
     <AuthLayout direction="row">
-      <section className="h-full w-3/5 flex items-center justify-center  ">
+      <section className="h-full md:w-3/5 w-full flex items-center justify-center  ">
         <Form
           onSubmit={handleLogin}
-          className="gap-8 items-center justify-center w-[350px]"
+          className="gap-8 items-center justify-center md:w-[350px] w-[300px]"
         >
           <div className="flex flex-col gap-1 items-center">
             <h1 className="font-bold text-3xl">Welcome Back</h1>
@@ -90,7 +90,7 @@ export const Login = () => {
           </h1>
         </Form>
       </section>
-      <section className="h-full w-2/5">
+      <section className="h-full md:w-2/5 w-0">
         <img
           className="w-full h-full object-cover object-left"
           src="/img/login.jpg"

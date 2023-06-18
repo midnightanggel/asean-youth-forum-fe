@@ -24,7 +24,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="z-10 flex flex-row md:text-base text-sm bg-[#F0F2F5] gap-5 w-full md:h-20 h-14  md:px-[15vh] px-9 items-center drop-shadow-md fixed ">
+    <header className="z-10 flex flex-row md:text-lg text-sm bg-[#F0F2F5] gap-5 w-full md:h-20 h-14  md:px-[15vh] px-9 items-center drop-shadow-md fixed ">
       <figure className="md:w-[90px] w-[70px]">
         <img src="/logo/asyf-logo.png" alt="" />
       </figure>
@@ -111,18 +111,20 @@ export const Navbar = () => {
                     {name}
                   </h1>
                 </div>
-                <NavLink to="/" className={mobileNavAcrtive}>
-                  Home
-                </NavLink>
-                <NavLink to="/about" className={mobileNavAcrtive}>
-                  About
-                </NavLink>
-                <NavLink to="/articles" className={mobileNavAcrtive}>
-                  Articles
-                </NavLink>
-                <NavLink to="/forums" className={mobileNavAcrtive}>
-                  Forums
-                </NavLink>
+                <div className="flex md:hidden flex-col">
+                  <NavLink to="/" className={mobileNavAcrtive}>
+                    Home
+                  </NavLink>
+                  <NavLink to="/about" className={mobileNavAcrtive}>
+                    About
+                  </NavLink>
+                  <NavLink to="/articles" className={mobileNavAcrtive}>
+                    Articles
+                  </NavLink>
+                  <NavLink to="/forums" className={mobileNavAcrtive}>
+                    Forums
+                  </NavLink>
+                </div>
                 <NavLink to="/profile" className={mobileNavAcrtive}>
                   Profile
                 </NavLink>
@@ -134,7 +136,7 @@ export const Navbar = () => {
                 </h1>
               </Fragment>
             ) : (
-              <Fragment className="">
+              <Fragment>
                 <NavLink to="/" className={mobileNavAcrtive}>
                   Home
                 </NavLink>

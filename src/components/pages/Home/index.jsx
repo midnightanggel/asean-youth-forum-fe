@@ -24,10 +24,10 @@ export const Home = () => {
   }, []);
 
   return (
-    <MainLayout>
+    <MainLayout className="md:pt-20 pt-14">
       <ContentLayout
         padding={true}
-        className="md:flex-row flex-col-reverse bg-[#09644E] text-white justify-between items-center gap-4 "
+        className="md:flex-row flex-col-reverse bg-[#09644E]   text-white justify-between items-center gap-4 "
       >
         <div className="md:w-2/5 w-full flex flex-col gap-5">
           <h1 className="font-bold md:text-4xl text-3xl">

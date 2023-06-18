@@ -1,25 +1,25 @@
-import { MainLayout, ContentLayout, Button } from "@/components";
-import { TbListDetails } from "react-icons/tb";
-import { MdWork } from "react-icons/md";
+import { Button, ContentLayout, MainLayout } from "@/components";
 import { Fragment, useState } from "react";
+import { MdWork } from "react-icons/md";
+import { TbListDetails } from "react-icons/tb";
 
 export const About = () => {
   const [route, setRoute] = useState("about");
   return (
     <MainLayout>
       <ContentLayout className="flex-col bg-[#09644E]  justify-center items-center  ">
-        <div className=" w-full h-[70vh]  flex justify-center items-center ">
+        <div className=" w-full md:h-[70vh] h-[60vh] flex justify-center items-center ">
           <img
-            className="w-[400px] drop-shadow-xl"
+            className="md:w-[400px] w-[250px] drop-shadow-xl"
             src="/logo/asyf-logo.png"
             alt=""
           />
         </div>
-        <div className="w-full min-h-screen px-[15vh] py-[8vh] bg-[#F0F2F5] flex flex-row gap-5">
-          <div className="w-1/4 flex flex-col gap-4">
+        <div className="w-full min-h-screen md:px-[15vh] px-9 md:py-[8vh] py-10 bg-[#F0F2F5] flex md:flex-row flex-col gap-5">
+          <div className="md:w-1/4 w-full flex md:flex-col flex-row gap-4">
             <div
               onClick={() => setRoute("about")}
-              className={`cursor-pointer font-semibold  text-lg flex flex-row items-center gap-3 ${
+              className={`cursor-pointer font-semibold  md:text-lg text-base flex flex-row items-center gap-3 ${
                 route == "about"
                   ? "bg-[#09644E] hover:bg-[#07382c] text-white"
                   : "bg-gray-300 hover:bg-gray-400 text-black"
@@ -30,7 +30,7 @@ export const About = () => {
             </div>
             <div
               onClick={() => setRoute("job")}
-              className={`cursor-pointer font-semibold  text-lg flex flex-row items-center gap-3 ${
+              className={`cursor-pointer font-semibold  md:text-lg text-base flex flex-row items-center gap-3 ${
                 route != "about"
                   ? "bg-[#09644E] hover:bg-[#07382c] text-white"
                   : "bg-gray-300 hover:bg-gray-400 text-black"
@@ -40,7 +40,7 @@ export const About = () => {
               <h1 className="">Job and Function</h1>
             </div>
           </div>
-          <div className="w-3/4 text-justify text-lg gap-4 flex flex-col">
+          <div className="md:w-3/4 w-full text-justify md:text-lg text-base gap-4 flex flex-col">
             {route == "about" ? (
               <Fragment>
                 <p>
@@ -55,7 +55,7 @@ export const About = () => {
                   collaborate, and create networks with other youth from across
                   the ASEAN region.
                 </p>
-                <h1 className="font-bold text-3xl">History</h1>
+                <h1 className="font-bold md:text-3xl text-xl">History</h1>
                 <p>
                   The history of the ASEAN Youth Forum began in 1975 when ASEAN
                   established. This forum aims to facilitate dialogue and
@@ -76,7 +76,7 @@ export const About = () => {
               </Fragment>
             ) : (
               <Fragment>
-                <h1 className="font-bold text-3xl">Job</h1>
+                <h1 className="font-bold md:text-3xl text-xl">Job</h1>
                 <ol className="list-decimal pl-5">
                   <li>
                     Participate actively in discussions and question and answer
@@ -110,7 +110,7 @@ export const About = () => {
                     understanding and awareness of important issues in Asia.
                   </li>
                 </ol>
-                <h1 className="font-bold text-3xl">Function</h1>
+                <h1 className="font-bold md:text-3xl text-xl">Function</h1>
                 <ol className="list-decimal pl-5">
                   <li>
                     As a forum for Asian youth to exchange information and

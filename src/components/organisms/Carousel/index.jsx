@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ export const Carousel = ({ data }) => {
   }, []);
   return (
     <Fragment>
-      <div className="relative w-full h-[450px] group">
+      <div className="relative w-full md:h-[450px] h-[250px] group md:mb-0 mb-3">
         <Link to={`/articles/${slides[currentIndex]._id}`}>
           <div
             style={{
@@ -33,8 +33,10 @@ export const Carousel = ({ data }) => {
             }}
             className="w-full h-full rounded-xl bg-center bg-cover duration-500 ease-in-out"
           ></div>
-          <div className="flex items-center justify-center h-[150px] absolute bottom-0 left-0 p-4 text-white bg-gradient-to-t from-black to-transparent rounded-b-xl w-full">
-            <p className="text-center text-3xl">{slides[currentIndex].title}</p>
+          <div className="flex items-center justify-center md:h-[150px] h-[100px] absolute bottom-0 left-0 p-4 text-white bg-gradient-to-t from-black to-transparent rounded-b-xl w-full">
+            <p className="text-center md:text-3xl text-lg">
+              {slides[currentIndex].title}
+            </p>
           </div>
         </Link>
         <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
@@ -45,7 +47,7 @@ export const Carousel = ({ data }) => {
           <BsChevronCompactRight onClick={nextSlide} size={30} />
         </div>
       </div>
-      <div className="flex  justify-center">
+      <div className="md:flex  hidden justify-center">
         {slides &&
           slides.map((slide, slideIndex) => (
             <div
