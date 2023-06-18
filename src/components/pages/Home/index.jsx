@@ -1,12 +1,12 @@
 import {
-  MainLayout,
-  ContentLayout,
-  Button,
   Article,
+  Button,
+  ContentLayout,
   Forum,
+  MainLayout,
 } from "@/components";
 import { get } from "@/services";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
   const [mostCommented, setMostCommented] = useState({});
@@ -27,13 +27,13 @@ export const Home = () => {
     <MainLayout>
       <ContentLayout
         padding={true}
-        className="flex-row bg-[#09644E] text-white justify-between items-center  "
+        className="md:flex-row flex-col-reverse bg-[#09644E] text-white justify-between items-center gap-4 "
       >
-        <div className="w-2/5 flex flex-col gap-5">
-          <h1 className="font-bold text-4xl">
+        <div className="md:w-2/5 w-full flex flex-col gap-5">
+          <h1 className="font-bold md:text-4xl text-3xl">
             Uniting ASEAN's Youth for a Better Tomorrow
           </h1>
-          <p className="font-light text-justify">
+          <p className="font-light text-justify ">
             The ASEAN Youth Forum (AYF) is a platform for young people across
             the ASEAN region to connect, engage, and collaborate towards a
             brighter future. Our mission is to empower the youth of ASEAN to
@@ -52,7 +52,7 @@ export const Home = () => {
             Let's Contribute
           </Button>
         </div>
-        <div className="w-2/5  flex items-end justify-end ">
+        <div className="md:w-2/5 w-full  flex items-end justify-end ">
           <figcaption className="w-[350px] ">
             <img
               className="rounded-lg aspect-square object-cover"
