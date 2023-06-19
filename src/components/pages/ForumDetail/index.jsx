@@ -133,10 +133,10 @@ export const ForumDetail = () => {
               {forum.status == "success" && forum.data.description}
             </p>
           ) : (
-            <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg md:py-[5vh] py-5 md:px-[15vh] px-3 flex flex-col justify-between ">
+            <div className="w-full gap-5 bg-white rounded-lg h-[80vh] shadow-lg md:py-[5vh] py-5 md:px-[15vh] px-3 flex flex-col justify-between ">
               <div
                 ref={scrollRef}
-                className="w-full h-[75vh]  overflow-y-auto flex flex-col gap-5"
+                className="w-full h-full  overflow-y-auto flex flex-col gap-5"
               >
                 {forum.status == "success" &&
                   forum.data.chats.map((el, i) => (
@@ -156,7 +156,7 @@ export const ForumDetail = () => {
                         />
                       </div>
                       <div
-                        className={`gap-2 p-3 flex flex-col ${
+                        className={`gap-2 p-3 flex flex-col shadow-lg shadow-gray-300 ${
                           user && user.id == el.user._id
                             ? "bg-[#1DBC40] text-[#F0F2F5] rounded-l-lg rounded-br-lg"
                             : "bg-[#F0F2F5] text-black  rounded-r-lg rounded-bl-lg"
@@ -165,7 +165,7 @@ export const ForumDetail = () => {
                         <h1 className="font-bold text-base capitalize">
                           {el.user.name}
                         </h1>
-                        <p className="text-base text-justify">
+                        <p className="text-base text-justify ">
                           {el.message}
                           <span
                             className={`pt-1 items-end justify-end flex text-sm font-normal gap-1 ${
@@ -182,29 +182,34 @@ export const ForumDetail = () => {
                   ))}
               </div>
 
-              {user?.name != "" ? (
-                <FormField
-                  padding="2"
-                  placeholder="Write message here..."
-                  width=""
-                  type="text"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && submitMessage()}
-                >
-                  <MdSend onClick={submitMessage} className="text-[#1dbc40]" />
-                </FormField>
-              ) : (
-                <h1 className="font-medium w-full flex justify-center gap-1">
-                  <Link
-                    className="text-[#1dbc40]"
-                    to={`/login?redirect=/forums/${id}`}
+              <div className="w-full shadow-xl">
+                {user?.name != "" ? (
+                  <FormField
+                    padding="2"
+                    placeholder="Write message here..."
+                    width=""
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && submitMessage()}
                   >
-                    Log in{` `}
-                  </Link>
-                  to your account to participate
-                </h1>
-              )}
+                    <MdSend
+                      onClick={submitMessage}
+                      className="text-[#1dbc40]"
+                    />
+                  </FormField>
+                ) : (
+                  <h1 className="font-medium w-full flex justify-center gap-1">
+                    <Link
+                      className="text-[#1dbc40]"
+                      to={`/login?redirect=/forums/${id}`}
+                    >
+                      Log in{` `}
+                    </Link>
+                    to your account to participate
+                  </h1>
+                )}
+              </div>
             </div>
           )}
         </div>
