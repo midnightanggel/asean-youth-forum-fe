@@ -1,9 +1,13 @@
-import { MainLayout, ContentLayout, FormField, Article } from "@/components";
-import { BiSearchAlt2 } from "react-icons/bi";
-import { Carousel } from "@/components";
-import { useEffect } from "react";
+import {
+  Article,
+  Carousel,
+  ContentLayout,
+  FormField,
+  MainLayout,
+} from "@/components";
 import { get } from "@/services";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -34,10 +38,10 @@ export const Articles = () => {
     getArticles();
   }, []);
   return (
-    <MainLayout>
+    <MainLayout className="md:pt-20 pt-5">
       <ContentLayout padding={true} className="flex-col gap-5 pt-[10vh]">
-        <div className="flex flex-row w-full justify-between items-center">
-          <h1 className="font-bold text-3xl">Articles</h1>
+        <div className="flex flex-row w-full justify-between gap-5 md:gap-0 items-center">
+          <h1 className="font-bold md:text-3xl text-2xl">Articles</h1>
           <FormField
             value={search}
             onChange={(e) => setSearch(e.target.value)}

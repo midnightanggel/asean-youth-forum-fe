@@ -1,13 +1,12 @@
-import { MainLayout, ContentLayout, FormField } from "@/components";
-import { MdOutlineDateRange } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
-import { BsChatLeftText } from "react-icons/bs";
-import { MdSend } from "react-icons/md";
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { ContentLayout, FormField, MainLayout } from "@/components";
 import { get } from "@/services";
 import { formatDateFull } from "@/utils";
+import { useEffect, useRef, useState } from "react";
+import { BiUserCircle } from "react-icons/bi";
+import { BsChatLeftText } from "react-icons/bs";
+import { MdOutlineDateRange, MdSend } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 
 export const ForumDetail = () => {
@@ -17,6 +16,7 @@ export const ForumDetail = () => {
   const [forum, setForum] = useState({});
   const [socket, setSocket] = useState(null);
   const { id } = useParams();
+  const scrollRef = useRef(null);
   const getForum = async () => {
     const res = await get(`/forums/${id}`);
     setForum(res);
@@ -25,7 +25,9 @@ export const ForumDetail = () => {
   const submitMessage = async () => {
     const raw = JSON.stringify({
       forum_id: id,
+      user_name: user.name,
       user_id: user.id,
+      user_image: user.image,
       message,
     });
     socket.emit("sendToForum", raw);
@@ -33,11 +35,33 @@ export const ForumDetail = () => {
   };
 
   useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.scrollTop = scrollElement.scrollHeight;
+    }
+  }, [route, forum?.data?.chats]);
+
+  useEffect(() => {
     if (socket) {
       socket.on("broadcastToFrontend", (msgRaw) => {
         const msg = JSON.parse(msgRaw);
         if (msg.forum_id == id) {
-          getForum();
+          const newChat = {
+            user: {
+              _id: msg.user_id,
+              name: msg.user_name,
+              image: msg.user_image,
+            },
+            message: msg.message,
+            sendAt: msg.sent_at,
+          };
+          setForum((prevState) => ({
+            ...prevState,
+            data: {
+              ...prevState.data,
+              chats: [...prevState.data.chats, newChat],
+            },
+          }));
         }
       });
     }
@@ -53,21 +77,21 @@ export const ForumDetail = () => {
   }, []);
 
   return (
-    <MainLayout>
-      <ContentLayout className="flex-col  pt-[5vh] ">
+    <MainLayout className="md:pt-20 pt-5">
+      <ContentLayout className="flex-col ">
         {forum.status == "success" && (
-          <div className="h-[40vh] w-full relative">
+          <div className="md:h-[40vh] h-[30vh] w-full relative">
             <img
               src={forum.data.image.replace("/upload/", "/upload/q_70/")}
               className="h-full w-full object-cover"
               alt=""
             />
 
-            <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full px-[15vh]">
+            <div className="flex flex-col gap-2 justify-center h-[130px] absolute bottom-0 left-0 text-white bg-gradient-to-t from-black to-transparent w-full md:px-[15vh] px-6">
               <p className="text-justify text-2xl font-semibold line-clamp-2 capitalize">
                 {forum.data.title}
               </p>
-              <div className="text-[#cacaca] flex items-center text-base font-normal gap-2">
+              <div className="text-[#cacaca] flex items-center text-base font-normal md:gap-2 gap-1">
                 <MdOutlineDateRange />
                 <h1>{formatDateFull(forum.data.publish_date)}</h1>
                 <h1> | </h1>
@@ -81,8 +105,8 @@ export const ForumDetail = () => {
           </div>
         )}
 
-        <div className="px-[15vh] flex flex-col gap-5 py-[5vh] w-full h-full">
-          <div className="flex flex-row gap-5 text-base font-bold">
+        <div className="md:px-[15vh] px-6 flex flex-col gap-5 md:py-[5vh] py-[2vh] w-full h-full">
+          <div className="flex flex-row md:gap-5 gap-2 text-base font-bold">
             <h1
               onClick={() => setRoute("about")}
               className={`cursor-pointer ${
@@ -109,13 +133,16 @@ export const ForumDetail = () => {
               {forum.status == "success" && forum.data.description}
             </p>
           ) : (
-            <div className="w-full gap-5 bg-white rounded-lg h-[75vh] shadow-lg py-[5vh] px-[15vh] flex flex-col justify-between ">
-              <div className="w-full h-full flex-grow overflow-x-auto flex flex-col gap-5">
+            <div className="w-full gap-5 bg-white rounded-lg h-[80vh] shadow-lg md:py-[5vh] py-5 md:px-[15vh] px-3 flex flex-col justify-between ">
+              <div
+                ref={scrollRef}
+                className="w-full h-full  overflow-y-auto flex flex-col gap-5"
+              >
                 {forum.status == "success" &&
                   forum.data.chats.map((el, i) => (
                     <div
                       key={i}
-                      className={`max-w-2xl w-full flex gap-2 ${
+                      className={`max-w-2xl w-full flex md:gap-2 gap-1 ${
                         user &&
                         user.id == el.user._id &&
                         "flex-row-reverse ml-auto  right-0"
@@ -129,7 +156,7 @@ export const ForumDetail = () => {
                         />
                       </div>
                       <div
-                        className={`gap-2 p-3 flex flex-col ${
+                        className={`gap-2 p-3 flex flex-col shadow-lg shadow-gray-300 ${
                           user && user.id == el.user._id
                             ? "bg-[#1DBC40] text-[#F0F2F5] rounded-l-lg rounded-br-lg"
                             : "bg-[#F0F2F5] text-black  rounded-r-lg rounded-bl-lg"
@@ -138,7 +165,7 @@ export const ForumDetail = () => {
                         <h1 className="font-bold text-base capitalize">
                           {el.user.name}
                         </h1>
-                        <p className="text-base text-justify">
+                        <p className="text-base text-justify ">
                           {el.message}
                           <span
                             className={`pt-1 items-end justify-end flex text-sm font-normal gap-1 ${
@@ -155,28 +182,34 @@ export const ForumDetail = () => {
                   ))}
               </div>
 
-              {user?.name != "" ? (
-                <FormField
-                  padding="2"
-                  placeholder="Write message here..."
-                  width=""
-                  type="text"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                >
-                  <MdSend onClick={submitMessage} className="text-[#1dbc40]" />
-                </FormField>
-              ) : (
-                <h1 className="font-medium w-full flex justify-center gap-1">
-                  <Link
-                    className="text-[#1dbc40]"
-                    to={`/login?redirect=/forums/${id}`}
+              <div className="w-full shadow-xl">
+                {user?.name != "" ? (
+                  <FormField
+                    padding="2"
+                    placeholder="Write message here..."
+                    width=""
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && submitMessage()}
                   >
-                    Log in{` `}
-                  </Link>
-                  to your account to participate
-                </h1>
-              )}
+                    <MdSend
+                      onClick={submitMessage}
+                      className="text-[#1dbc40]"
+                    />
+                  </FormField>
+                ) : (
+                  <h1 className="font-medium w-full flex justify-center gap-1">
+                    <Link
+                      className="text-[#1dbc40]"
+                      to={`/login?redirect=/forums/${id}`}
+                    >
+                      Log in{` `}
+                    </Link>
+                    to your account to participate
+                  </h1>
+                )}
+              </div>
             </div>
           )}
         </div>

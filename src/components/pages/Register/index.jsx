@@ -1,9 +1,8 @@
-import { AuthLayout, FormField, Button, Form } from "@/components";
-import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { AuthLayout, Button, Form, FormField } from "@/components";
 import { post } from "@/services";
+import { useState } from "react";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 export const Register = () => {
   const [showPassword, setShowPassword] = useState("password");
   const [showConfirmPassword, setShowConfirmPassword] = useState("password");
@@ -35,13 +34,15 @@ export const Register = () => {
   };
   return (
     <AuthLayout direction="reverse">
-      <section className="h-full w-3/5 flex items-center justify-center ">
+      <section className="h-full md:w-3/5 w-full flex items-center justify-center ">
         <Form
           onSubmit={handRegister}
-          className="gap-7 items-center justify-center w-[350px]"
+          className="gap-7 items-center justify-center md:w-[350px] w-[300px]"
         >
           <div className="flex flex-col gap-1 items-center">
-            <h1 className="font-bold text-3xl">Get Started With AYF</h1>
+            <h1 className="font-bold text-3xl text-center">
+              Get Started With AYF
+            </h1>
             <h1 className="font-normal text-base ">Let's join us</h1>
           </div>
           <div className="w-full flex flex-col gap-7">
@@ -134,7 +135,7 @@ export const Register = () => {
           </h1>
         </Form>
       </section>
-      <section className="h-full w-2/5">
+      <section className="h-full md:w-2/5 w-0">
         <img
           className="w-full h-full object-cover object-center"
           src="/img/register.png"
