@@ -32,8 +32,8 @@ export const ArticleDetail = () => {
     getMostCommented();
   }, [id]);
   return (
-    <MainLayout>
-      <ContentLayout padding={true} className="flex-row  pt-[10vh] gap-4">
+    <MainLayout className="md:pt-20 pt-5">
+      <ContentLayout padding={true} className="flex-row   gap-4">
         {article.status == "success" && (
           <section className=" md:w-2/3 w-full flex flex-col gap-2">
             <h1 className="font-bold md:text-3xl text-2xl">

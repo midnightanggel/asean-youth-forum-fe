@@ -77,10 +77,10 @@ export const ForumDetail = () => {
   }, []);
 
   return (
-    <MainLayout>
-      <ContentLayout className="flex-col pt-[5vh] ">
+    <MainLayout className="md:pt-20 pt-5">
+      <ContentLayout className="flex-col ">
         {forum.status == "success" && (
-          <div className="md:h-[40vh] h-[25vh] w-full relative">
+          <div className="md:h-[40vh] h-[30vh] w-full relative">
             <img
               src={forum.data.image.replace("/upload/", "/upload/q_70/")}
               className="h-full w-full object-cover"

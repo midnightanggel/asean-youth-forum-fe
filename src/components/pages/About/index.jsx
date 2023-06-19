@@ -6,7 +6,7 @@ import { TbListDetails } from "react-icons/tb";
 export const About = () => {
   const [route, setRoute] = useState("about");
   return (
-    <MainLayout>
+    <MainLayout className="md:pt-20 pt-5">
       <ContentLayout className="flex-col bg-[#09644E]  justify-center items-center  ">
         <div className=" w-full md:h-[70vh] h-[60vh] flex justify-center items-center ">
           <img
