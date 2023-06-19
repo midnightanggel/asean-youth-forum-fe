@@ -59,7 +59,7 @@ export const Forums = () => {
     getForums();
   }, []);
   return (
-    <MainLayout className="md:pt-20 pt-0">
+    <MainLayout className="md:pt-20 pt-5">
       {showModal && (
         <Modal>
           <section className="bg-[#F0F2F5] w-[500px] h-[500px] rounded-lg flex justify-center items-center relative ">

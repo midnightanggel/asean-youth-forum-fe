@@ -38,7 +38,7 @@ export const Articles = () => {
     getArticles();
   }, []);
   return (
-    <MainLayout className="md:pt-20 pt-0">
+    <MainLayout className="md:pt-20 pt-5">
       <ContentLayout padding={true} className="flex-col gap-5 pt-[10vh]">
         <div className="flex flex-row w-full justify-between gap-5 md:gap-0 items-center">
           <h1 className="font-bold md:text-3xl text-2xl">Articles</h1>
